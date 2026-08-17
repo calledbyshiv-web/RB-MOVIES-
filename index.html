@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RB Movies</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+header{padding:20px;text-align:center;background:#111;position:sticky;top:0}
+h1{margin:0;color:#e50914}
+.search{width:90%;max-width:600px;padding:14px;margin:18px auto;display:block;border-radius:25px;border:0}
+nav{display:flex;gap:8px;overflow:auto;padding:10px}
+nav button{white-space:nowrap;padding:10px 16px;border:0;border-radius:20px}
+.container{padding:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px}
+.card{background:#151515;border-radius:12px;overflow:hidden;padding-bottom:12px}
+.poster{height:220px;background:linear-gradient(135deg,#333,#111);display:flex;align-items:center;justify-content:center;font-size:45px}
+.card h3,.card p{margin:8px 10px}
+.card p{color:#aaa;font-size:13px}
+.badge{display:inline-block;margin:0 10px;padding:4px 8px;background:#e50914;border-radius:5px;font-size:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎬 RB MOVIES</h1>
+<input id="search" class="search" placeholder="Search movies...">
+</header>
+
+<nav>
+<button onclick="filterMovies('All')">All</button>
+<button onclick="filterMovies('Bollywood')">Bollywood</button>
+<button onclick="filterMovies('Hollywood')">Hollywood</button>
+<button onclick="filterMovies('South')">South</button>
+<button onclick="filterMovies('Hindi Dubbed')">Hindi Dubbed</button>
+</nav>
+
+<div class="container">
+<div id="movies" class="grid"></div>
+</div>
+
+<script>
+const movies=[
+ {title:"Sample Bollywood Movie",cat:"Bollywood",year:2026,rating:"8.2"},
+ {title:"Sample Hollywood Movie",cat:"Hollywood",year:2026,rating:"8.5"},
+ {title:"Sample South Movie",cat:"South",year:2026,rating:"8.7"},
+ {title:"Sample Hindi Dubbed Movie",cat:"Hindi Dubbed",year:2026,rating:"8.1"},
+ {title:"Action Movie",cat:"Bollywood",year:2025,rating:"7.9"},
+ {title:"Adventure Movie",cat:"Hollywood",year:2025,rating:"8.0"}
+];
+
+let current="All";
+
+function showMovies(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const box=document.getElementById("movies");
+
+ const list=movies.filter(m=>
+   (current==="All"||m.cat===current) &&
+   m.title.toLowerCase().includes(q)
+ );
+
+ box.innerHTML=list.map(m=>`
+   <div class="card">
+     <div class="poster">🎬</div>
+     <h3>${m.title}</h3>
+     <span class="badge">⭐ ${m.rating}</span>
+     <p>${m.cat} • ${m.year}</p>
+   </div>
+ `).join("");
+}
+
+function filterMovies(cat){
+ current=cat;
+ showMovies();
+}
+
+document.getElementById("search").addEventListener("input",showMovies);
+showMovies();
+</script>
+
+</body>
+</html>
