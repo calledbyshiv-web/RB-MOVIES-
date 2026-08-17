@@ -3,22 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RB Movies</title>
+<title>RB Movies 🎬</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
-header{padding:20px;text-align:center;background:#111;position:sticky;top:0}
-h1{margin:0;color:#e50914}
-.search{width:90%;max-width:600px;padding:14px;margin:18px auto;display:block;border-radius:25px;border:0}
-nav{display:flex;gap:8px;overflow:auto;padding:10px}
-nav button{white-space:nowrap;padding:10px 16px;border:0;border-radius:20px}
-.container{padding:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px}
-.card{background:#151515;border-radius:12px;overflow:hidden;padding-bottom:12px}
-.poster{height:220px;background:linear-gradient(135deg,#333,#111);display:flex;align-items:center;justify-content:center;font-size:45px}
-.card h3,.card p{margin:8px 10px}
-.card p{color:#aaa;font-size:13px}
-.badge{display:inline-block;margin:0 10px;padding:4px 8px;background:#e50914;border-radius:5px;font-size:12px}
+body{
+  margin:0;
+  background:#080808;
+  color:white;
+  font-family:Arial,sans-serif
+}
+header{
+  padding:22px 15px;
+  text-align:center;
+  background:#111;
+}
+h1{
+  margin:0 0 15px;
+  color:#e50914;
+  font-size:30px;
+}
+.search{
+  width:100%;
+  max-width:600px;
+  padding:14px 18px;
+  border:0;
+  border-radius:30px;
+  font-size:16px;
+}
+nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px;
+  background:#111;
+}
+nav button{
+  border:0;
+  border-radius:20px;
+  padding:10px 16px;
+  white-space:nowrap;
+}
+.hero{
+  padding:35px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#220000,#080808);
+}
+.hero h2{font-size:30px;margin:5px}
+.hero p{color:#aaa}
+.container{padding:20px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:16px;
+}
+.card{
+  background:#151515;
+  border-radius:14px;
+  overflow:hidden;
+  transition:.2s;
+}
+.card:active{transform:scale(.97)}
+.poster{
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  background:linear-gradient(135deg,#333,#111);
+}
+.card h3{
+  margin:10px;
+  font-size:16px;
+}
+.card p{
+  margin:10px;
+  color:#aaa;
+  font-size:13px;
+}
+.rating{
+  display:inline-block;
+  margin:0 10px 10px;
+  padding:5px 8px;
+  border-radius:6px;
+  background:#e50914;
+  font-size:12px;
+}
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
 </style>
 </head>
 
@@ -26,7 +101,7 @@ nav button{white-space:nowrap;padding:10px 16px;border:0;border-radius:20px}
 
 <header>
 <h1>🎬 RB MOVIES</h1>
-<input id="search" class="search" placeholder="Search movies...">
+<input id="search" class="search" placeholder="🔍 Search movies...">
 </header>
 
 <nav>
@@ -37,48 +112,82 @@ nav button{white-space:nowrap;padding:10px 16px;border:0;border-radius:20px}
 <button onclick="filterMovies('Hindi Dubbed')">Hindi Dubbed</button>
 </nav>
 
+<section class="hero">
+<h2>🔥 Trending Movies</h2>
+<p>Discover movies from around the world</p>
+</section>
+
 <div class="container">
 <div id="movies" class="grid"></div>
 </div>
 
+<footer>
+<p>© 2026 RB Movies</p>
+<p>Movie discovery platform • Legal content only</p>
+</footer>
+
 <script>
+
 const movies=[
- {title:"Sample Bollywood Movie",cat:"Bollywood",year:2026,rating:"8.2"},
- {title:"Sample Hollywood Movie",cat:"Hollywood",year:2026,rating:"8.5"},
- {title:"Sample South Movie",cat:"South",year:2026,rating:"8.7"},
- {title:"Sample Hindi Dubbed Movie",cat:"Hindi Dubbed",year:2026,rating:"8.1"},
- {title:"Action Movie",cat:"Bollywood",year:2025,rating:"7.9"},
- {title:"Adventure Movie",cat:"Hollywood",year:2025,rating:"8.0"}
+{title:"Bollywood Action",cat:"Bollywood",year:2026,rating:"8.4"},
+{title:"Bollywood Drama",cat:"Bollywood",year:2025,rating:"8.1"},
+{title:"Hollywood Action",cat:"Hollywood",year:2026,rating:"8.7"},
+{title:"Hollywood Adventure",cat:"Hollywood",year:2025,rating:"8.3"},
+{title:"South Action",cat:"South",year:2026,rating:"8.8"},
+{title:"South Thriller",cat:"South",year:2025,rating:"8.5"},
+{title:"Hindi Dubbed Action",cat:"Hindi Dubbed",year:2026,rating:"8.6"},
+{title:"Hindi Dubbed Thriller",cat:"Hindi Dubbed",year:2025,rating:"8.2"}
 ];
 
 let current="All";
 
 function showMovies(){
- const q=document.getElementById("search").value.toLowerCase();
- const box=document.getElementById("movies");
 
- const list=movies.filter(m=>
-   (current==="All"||m.cat===current) &&
-   m.title.toLowerCase().includes(q)
- );
+const q=document
+.getElementById("search")
+.value
+.toLowerCase();
 
- box.innerHTML=list.map(m=>`
-   <div class="card">
-     <div class="poster">🎬</div>
-     <h3>${m.title}</h3>
-     <span class="badge">⭐ ${m.rating}</span>
-     <p>${m.cat} • ${m.year}</p>
-   </div>
- `).join("");
+const box=document.getElementById("movies");
+
+const list=movies.filter(m=>
+(current==="All"||m.cat===current)&&
+m.title.toLowerCase().includes(q)
+);
+
+box.innerHTML=list.map(m=>`
+
+<div class="card">
+
+<div class="poster">🎬</div>
+
+<h3>${m.title}</h3>
+
+<span class="rating">
+⭐ ${m.rating}
+</span>
+
+<p>
+${m.cat} • ${m.year}
+</p>
+
+</div>
+
+`).join("");
+
 }
 
 function filterMovies(cat){
- current=cat;
- showMovies();
+current=cat;
+showMovies();
 }
 
-document.getElementById("search").addEventListener("input",showMovies);
+document
+.getElementById("search")
+.addEventListener("input",showMovies);
+
 showMovies();
+
 </script>
 
 </body>
