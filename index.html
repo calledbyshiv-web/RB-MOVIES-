@@ -2,98 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RB Movies 🎬</title>
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:#080808;
-  color:white;
-  font-family:Arial,sans-serif
-}
-header{
-  padding:22px 15px;
-  text-align:center;
-  background:#111;
-}
-h1{
-  margin:0 0 15px;
-  color:#e50914;
-  font-size:30px;
-}
-.search{
-  width:100%;
-  max-width:600px;
-  padding:14px 18px;
-  border:0;
-  border-radius:30px;
-  font-size:16px;
-}
-nav{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:12px;
-  background:#111;
-}
-nav button{
-  border:0;
-  border-radius:20px;
-  padding:10px 16px;
-  white-space:nowrap;
-}
-.hero{
-  padding:35px 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#220000,#080808);
-}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+header{padding:22px 15px;text-align:center;background:#111;position:sticky;top:0;z-index:10}
+h1{margin:0 0 15px;color:#e50914}
+.search{width:100%;max-width:650px;padding:14px 18px;border:0;border-radius:30px;font-size:16px}
+nav{display:flex;gap:8px;overflow:auto;padding:12px;background:#111}
+button{border:0;border-radius:20px;padding:10px 15px;white-space:nowrap;cursor:pointer}
+.hero{text-align:center;padding:35px 15px;background:linear-gradient(135deg,#260000,#080808)}
 .hero h2{font-size:30px;margin:5px}
 .hero p{color:#aaa}
-.container{padding:20px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:16px;
-}
-.card{
-  background:#151515;
-  border-radius:14px;
-  overflow:hidden;
-  transition:.2s;
-}
-.card:active{transform:scale(.97)}
-.poster{
-  height:220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:50px;
-  background:linear-gradient(135deg,#333,#111);
-}
-.card h3{
-  margin:10px;
-  font-size:16px;
-}
-.card p{
-  margin:10px;
-  color:#aaa;
-  font-size:13px;
-}
-.rating{
-  display:inline-block;
-  margin:0 10px 10px;
-  padding:5px 8px;
-  border-radius:6px;
-  background:#e50914;
-  font-size:12px;
-}
-footer{
-  text-align:center;
-  padding:30px;
-  color:#777;
-}
+.controls{display:flex;gap:10px;padding:15px;overflow:auto}
+.grid{padding:15px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.card{background:#151515;border-radius:14px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-4px)}
+.poster{height:220px;background:linear-gradient(135deg,#333,#111);display:flex;align-items:center;justify-content:center;font-size:45px}
+.card h3{margin:10px;font-size:16px}
+.card p{margin:8px 10px;color:#aaa;font-size:13px}
+.rating{display:inline-block;margin:0 10px 5px;padding:5px 8px;background:#e50914;border-radius:6px;font-size:12px}
+.genre{display:inline-block;margin:0 10px 10px;color:#aaa;font-size:12px}
+.favorite{float:right;background:none;color:white;font-size:20px;padding:5px}
+footer{text-align:center;padding:30px;color:#777}
+.empty{text-align:center;padding:50px;color:#888}
 </style>
 </head>
 
@@ -105,21 +39,26 @@ footer{
 </header>
 
 <nav>
-<button onclick="filterMovies('All')">All</button>
-<button onclick="filterMovies('Bollywood')">Bollywood</button>
-<button onclick="filterMovies('Hollywood')">Hollywood</button>
-<button onclick="filterMovies('South')">South</button>
-<button onclick="filterMovies('Hindi Dubbed')">Hindi Dubbed</button>
+<button onclick="setCategory('All')">All</button>
+<button onclick="setCategory('Bollywood')">Bollywood</button>
+<button onclick="setCategory('Hollywood')">Hollywood</button>
+<button onclick="setCategory('South')">South</button>
+<button onclick="setCategory('Hindi Dubbed')">Hindi Dubbed</button>
+<button onclick="setCategory('Favorites')">❤️ Favorites</button>
 </nav>
 
 <section class="hero">
 <h2>🔥 Trending Movies</h2>
-<p>Discover movies from around the world</p>
+<p>Discover movies by category, rating and year</p>
 </section>
 
-<div class="container">
-<div id="movies" class="grid"></div>
+<div class="controls">
+<button onclick="sortMovies('rating')">⭐ Rating</button>
+<button onclick="sortMovies('year')">📅 Newest</button>
+<button onclick="sortMovies('title')">🔤 A-Z</button>
 </div>
+
+<div id="movies" class="grid"></div>
 
 <footer>
 <p>© 2026 RB Movies</p>
@@ -129,62 +68,137 @@ footer{
 <script>
 
 const movies=[
-{title:"Bollywood Action",cat:"Bollywood",year:2026,rating:"8.4"},
-{title:"Bollywood Drama",cat:"Bollywood",year:2025,rating:"8.1"},
-{title:"Hollywood Action",cat:"Hollywood",year:2026,rating:"8.7"},
-{title:"Hollywood Adventure",cat:"Hollywood",year:2025,rating:"8.3"},
-{title:"South Action",cat:"South",year:2026,rating:"8.8"},
-{title:"South Thriller",cat:"South",year:2025,rating:"8.5"},
-{title:"Hindi Dubbed Action",cat:"Hindi Dubbed",year:2026,rating:"8.6"},
-{title:"Hindi Dubbed Thriller",cat:"Hindi Dubbed",year:2025,rating:"8.2"}
+["Bollywood Action","Bollywood",2026,"8.4","Action"],
+["Bollywood Drama","Bollywood",2025,"8.1","Drama"],
+["Bollywood Comedy","Bollywood",2026,"7.9","Comedy"],
+["Bollywood Thriller","Bollywood",2025,"8.3","Thriller"],
+["Bollywood Romance","Bollywood",2024,"7.8","Romance"],
+["Bollywood Mystery","Bollywood",2026,"8.0","Mystery"],
+["Hollywood Action","Hollywood",2026,"8.7","Action"],
+["Hollywood Adventure","Hollywood",2025,"8.3","Adventure"],
+["Hollywood Sci-Fi","Hollywood",2026,"8.8","Sci-Fi"],
+["Hollywood Thriller","Hollywood",2025,"8.4","Thriller"],
+["Hollywood Comedy","Hollywood",2024,"7.7","Comedy"],
+["Hollywood Mystery","Hollywood",2026,"8.2","Mystery"],
+["South Action","South",2026,"8.8","Action"],
+["South Thriller","South",2025,"8.5","Thriller"],
+["South Drama","South",2026,"8.2","Drama"],
+["South Comedy","South",2025,"7.9","Comedy"],
+["South Mystery","South",2024,"8.1","Mystery"],
+["South Adventure","South",2026,"8.6","Adventure"],
+["Hindi Dubbed Action","Hindi Dubbed",2026,"8.6","Action"],
+["Hindi Dubbed Thriller","Hindi Dubbed",2025,"8.2","Thriller"],
+["Hindi Dubbed Adventure","Hindi Dubbed",2026,"8.5","Adventure"],
+["Hindi Dubbed Sci-Fi","Hindi Dubbed",2025,"8.0","Sci-Fi"],
+["Hindi Dubbed Drama","Hindi Dubbed",2024,"7.8","Drama"],
+["Hindi Dubbed Mystery","Hindi Dubbed",2026,"8.3","Mystery"],
+["Bollywood Crime","Bollywood",2026,"8.5","Crime"],
+["Bollywood Family","Bollywood",2025,"7.9","Family"],
+["Hollywood Crime","Hollywood",2026,"8.6","Crime"],
+["Hollywood Family","Hollywood",2025,"7.8","Family"],
+["South Crime","South",2026,"8.4","Crime"],
+["South Family","South",2025,"7.7","Family"],
+["Hindi Dubbed Crime","Hindi Dubbed",2026,"8.4","Crime"],
+["Hindi Dubbed Family","Hindi Dubbed",2025,"7.9","Family"],
+["Bollywood Sports","Bollywood",2024,"8.0","Sports"],
+["Hollywood Sports","Hollywood",2025,"8.1","Sports"],
+["South Sports","South",2024,"8.2","Sports"],
+["Hindi Dubbed Sports","Hindi Dubbed",2025,"8.0","Sports"]
 ];
 
-let current="All";
+let category="All";
+let sortBy="rating";
+let favorites=JSON.parse(localStorage.getItem("rbFavorites")||"[]");
+
+function setCategory(cat){
+category=cat;
+showMovies();
+}
+
+function sortMovies(type){
+sortBy=type;
+showMovies();
+}
+
+function toggleFavorite(title){
+if(favorites.includes(title)){
+favorites=favorites.filter(x=>x!==title);
+}else{
+favorites.push(title);
+}
+localStorage.setItem("rbFavorites",JSON.stringify(favorites));
+showMovies();
+}
 
 function showMovies(){
 
-const q=document
-.getElementById("search")
-.value
-.toLowerCase();
+const query=document.getElementById("search").value.toLowerCase();
+
+let list=movies.filter(m=>{
+
+const matchesCategory=
+category==="All" ||
+category==="Favorites" && favorites.includes(m[0]) ||
+m[1]===category;
+
+const matchesSearch=
+m[0].toLowerCase().includes(query) ||
+m[1].toLowerCase().includes(query) ||
+m[3].includes(query) ||
+m[4].toLowerCase().includes(query) ||
+String(m[2]).includes(query);
+
+return matchesCategory && matchesSearch;
+});
+
+if(sortBy==="rating"){
+list.sort((a,b)=>Number(b[3])-Number(a[3]));
+}
+
+if(sortBy==="year"){
+list.sort((a,b)=>b[2]-a[2]);
+}
+
+if(sortBy==="title"){
+list.sort((a,b)=>a[0].localeCompare(b[0]));
+}
 
 const box=document.getElementById("movies");
 
-const list=movies.filter(m=>
-(current==="All"||m.cat===current)&&
-m.title.toLowerCase().includes(q)
-);
+if(!list.length){
+box.innerHTML='<div class="empty">😕 No movies found</div>';
+return;
+}
 
-box.innerHTML=list.map(m=>`
+box.innerHTML=list.map(m=>{
 
+const liked=favorites.includes(m[0]);
+
+return `
 <div class="card">
 
 <div class="poster">🎬</div>
 
-<h3>${m.title}</h3>
+<button class="favorite" onclick="toggleFavorite('${m[0]}')">
+${liked?"❤️":"♡"}
+</button>
 
-<span class="rating">
-⭐ ${m.rating}
-</span>
+<h3>${m[0]}</h3>
 
-<p>
-${m.cat} • ${m.year}
-</p>
+<span class="rating">⭐ ${m[3]}</span>
+
+<p>${m[1]} • ${m[2]}</p>
+
+<span class="genre">🎭 ${m[4]}</span>
 
 </div>
+`;
 
-`).join("");
+}).join("");
 
 }
 
-function filterMovies(cat){
-current=cat;
-showMovies();
-}
-
-document
-.getElementById("search")
-.addEventListener("input",showMovies);
+document.getElementById("search").addEventListener("input",showMovies);
 
 showMovies();
 
