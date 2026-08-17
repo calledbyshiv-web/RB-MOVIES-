@@ -12,13 +12,13 @@ header{padding:22px 15px;text-align:center;background:#111;position:sticky;top:0
 h1{margin:0 0 15px;color:#e50914}
 .search{width:100%;max-width:650px;padding:14px 18px;border:0;border-radius:30px;font-size:16px}
 nav{display:flex;gap:8px;overflow:auto;padding:12px;background:#111}
-button{border:0;border-radius:20px;padding:10px 15px;white-space:nowrap;cursor:pointer}
+button{border:0;border-radius:20px;padding:10px 15px;cursor:pointer}
 .hero{text-align:center;padding:35px 15px;background:linear-gradient(135deg,#260000,#080808)}
 .hero h2{font-size:30px;margin:5px}
 .hero p{color:#aaa}
 .controls{display:flex;gap:10px;padding:15px;overflow:auto}
 .grid{padding:15px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
-.card{background:#151515;border-radius:14px;overflow:hidden;transition:.2s}
+.card{background:#151515;border-radius:14px;overflow:hidden;transition:.2s;cursor:pointer}
 .card:hover{transform:translateY(-4px)}
 .poster{height:220px;background:linear-gradient(135deg,#333,#111);display:flex;align-items:center;justify-content:center;font-size:45px}
 .card h3{margin:10px;font-size:16px}
@@ -26,8 +26,60 @@ button{border:0;border-radius:20px;padding:10px 15px;white-space:nowrap;cursor:p
 .rating{display:inline-block;margin:0 10px 5px;padding:5px 8px;background:#e50914;border-radius:6px;font-size:12px}
 .genre{display:inline-block;margin:0 10px 10px;color:#aaa;font-size:12px}
 .favorite{float:right;background:none;color:white;font-size:20px;padding:5px}
-footer{text-align:center;padding:30px;color:#777}
 .empty{text-align:center;padding:50px;color:#888}
+footer{text-align:center;padding:30px;color:#777}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+z-index:100;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+
+.modal-box{
+background:#171717;
+max-width:500px;
+width:100%;
+border-radius:18px;
+padding:25px;
+position:relative;
+box-shadow:0 10px 40px #000
+}
+
+.close{
+position:absolute;
+right:15px;
+top:10px;
+background:#333;
+color:#fff;
+font-size:20px
+}
+
+.modal-poster{
+height:180px;
+border-radius:12px;
+background:linear-gradient(135deg,#444,#111);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+margin-bottom:20px
+}
+
+.watch{
+display:block;
+text-align:center;
+margin-top:20px;
+padding:13px;
+border-radius:25px;
+background:#e50914;
+color:white;
+text-decoration:none
+}
 </style>
 </head>
 
@@ -65,50 +117,79 @@ footer{text-align:center;padding:30px;color:#777}
 <p>Movie discovery platform • Legal content only</p>
 </footer>
 
+<div id="modal" class="modal" onclick="closeModal(event)">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<div class="modal-poster">🎬</div>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalInfo"></p>
+
+<p id="modalDescription"></p>
+
+<button id="favButton" onclick="favoriteFromModal()">
+❤️ Add to Favorites
+</button>
+
+<a class="watch" href="#" onclick="return false">
+🔗 Where to Watch — Coming Soon
+</a>
+
+</div>
+</div>
+
 <script>
 
 const movies=[
-["Bollywood Action","Bollywood",2026,"8.4","Action"],
-["Bollywood Drama","Bollywood",2025,"8.1","Drama"],
-["Bollywood Comedy","Bollywood",2026,"7.9","Comedy"],
-["Bollywood Thriller","Bollywood",2025,"8.3","Thriller"],
-["Bollywood Romance","Bollywood",2024,"7.8","Romance"],
-["Bollywood Mystery","Bollywood",2026,"8.0","Mystery"],
-["Hollywood Action","Hollywood",2026,"8.7","Action"],
-["Hollywood Adventure","Hollywood",2025,"8.3","Adventure"],
-["Hollywood Sci-Fi","Hollywood",2026,"8.8","Sci-Fi"],
-["Hollywood Thriller","Hollywood",2025,"8.4","Thriller"],
-["Hollywood Comedy","Hollywood",2024,"7.7","Comedy"],
-["Hollywood Mystery","Hollywood",2026,"8.2","Mystery"],
-["South Action","South",2026,"8.8","Action"],
-["South Thriller","South",2025,"8.5","Thriller"],
-["South Drama","South",2026,"8.2","Drama"],
-["South Comedy","South",2025,"7.9","Comedy"],
-["South Mystery","South",2024,"8.1","Mystery"],
-["South Adventure","South",2026,"8.6","Adventure"],
-["Hindi Dubbed Action","Hindi Dubbed",2026,"8.6","Action"],
-["Hindi Dubbed Thriller","Hindi Dubbed",2025,"8.2","Thriller"],
-["Hindi Dubbed Adventure","Hindi Dubbed",2026,"8.5","Adventure"],
-["Hindi Dubbed Sci-Fi","Hindi Dubbed",2025,"8.0","Sci-Fi"],
-["Hindi Dubbed Drama","Hindi Dubbed",2024,"7.8","Drama"],
-["Hindi Dubbed Mystery","Hindi Dubbed",2026,"8.3","Mystery"],
-["Bollywood Crime","Bollywood",2026,"8.5","Crime"],
-["Bollywood Family","Bollywood",2025,"7.9","Family"],
-["Hollywood Crime","Hollywood",2026,"8.6","Crime"],
-["Hollywood Family","Hollywood",2025,"7.8","Family"],
-["South Crime","South",2026,"8.4","Crime"],
-["South Family","South",2025,"7.7","Family"],
-["Hindi Dubbed Crime","Hindi Dubbed",2026,"8.4","Crime"],
-["Hindi Dubbed Family","Hindi Dubbed",2025,"7.9","Family"],
-["Bollywood Sports","Bollywood",2024,"8.0","Sports"],
-["Hollywood Sports","Hollywood",2025,"8.1","Sports"],
-["South Sports","South",2024,"8.2","Sports"],
-["Hindi Dubbed Sports","Hindi Dubbed",2025,"8.0","Sports"]
+["Bollywood Action","Bollywood",2026,"8.4","Action","An action-packed Bollywood movie discovery listing."],
+["Bollywood Drama","Bollywood",2025,"8.1","Drama","A dramatic Bollywood movie listing."],
+["Bollywood Comedy","Bollywood",2026,"7.9","Comedy","A fun Bollywood comedy listing."],
+["Bollywood Thriller","Bollywood",2025,"8.3","Thriller","A suspenseful Bollywood thriller listing."],
+["Bollywood Romance","Bollywood",2024,"7.8","Romance","A romantic Bollywood movie listing."],
+["Bollywood Mystery","Bollywood",2026,"8.0","Mystery","A mysterious Bollywood movie listing."],
+
+["Hollywood Action","Hollywood",2026,"8.7","Action","A high-energy Hollywood action listing."],
+["Hollywood Adventure","Hollywood",2025,"8.3","Adventure","An adventurous Hollywood movie listing."],
+["Hollywood Sci-Fi","Hollywood",2026,"8.8","Sci-Fi","A futuristic Hollywood sci-fi listing."],
+["Hollywood Thriller","Hollywood",2025,"8.4","Thriller","A suspenseful Hollywood thriller listing."],
+["Hollywood Comedy","Hollywood",2024,"7.7","Comedy","A Hollywood comedy listing."],
+["Hollywood Mystery","Hollywood",2026,"8.2","Mystery","A Hollywood mystery listing."],
+
+["South Action","South",2026,"8.8","Action","A powerful South Indian action listing."],
+["South Thriller","South",2025,"8.5","Thriller","A South Indian thriller listing."],
+["South Drama","South",2026,"8.2","Drama","A South Indian drama listing."],
+["South Comedy","South",2025,"7.9","Comedy","A South Indian comedy listing."],
+["South Mystery","South",2024,"8.1","Mystery","A South Indian mystery listing."],
+["South Adventure","South",2026,"8.6","Adventure","A South Indian adventure listing."],
+
+["Hindi Dubbed Action","Hindi Dubbed",2026,"8.6","Action","A Hindi-dubbed action movie listing."],
+["Hindi Dubbed Thriller","Hindi Dubbed",2025,"8.2","Thriller","A Hindi-dubbed thriller listing."],
+["Hindi Dubbed Adventure","Hindi Dubbed",2026,"8.5","Adventure","A Hindi-dubbed adventure listing."],
+["Hindi Dubbed Sci-Fi","Hindi Dubbed",2025,"8.0","Sci-Fi","A Hindi-dubbed sci-fi listing."],
+["Hindi Dubbed Drama","Hindi Dubbed",2024,"7.8","Drama","A Hindi-dubbed drama listing."],
+["Hindi Dubbed Mystery","Hindi Dubbed",2026,"8.3","Mystery","A Hindi-dubbed mystery listing."],
+
+["Bollywood Crime","Bollywood",2026,"8.5","Crime","A Bollywood crime movie listing."],
+["Bollywood Family","Bollywood",2025,"7.9","Family","A Bollywood family movie listing."],
+["Hollywood Crime","Hollywood",2026,"8.6","Crime","A Hollywood crime movie listing."],
+["Hollywood Family","Hollywood",2025,"7.8","Family","A Hollywood family movie listing."],
+["South Crime","South",2026,"8.4","Crime","A South Indian crime movie listing."],
+["South Family","South",2025,"7.7","Family","A South Indian family movie listing."],
+["Hindi Dubbed Crime","Hindi Dubbed",2026,"8.4","Crime","A Hindi-dubbed crime movie listing."],
+["Hindi Dubbed Family","Hindi Dubbed",2025,"7.9","Family","A Hindi-dubbed family movie listing."],
+["Bollywood Sports","Bollywood",2024,"8.0","Sports","A Bollywood sports movie listing."],
+["Hollywood Sports","Hollywood",2025,"8.1","Sports","A Hollywood sports movie listing."],
+["South Sports","South",2024,"8.2","Sports","A South Indian sports movie listing."],
+["Hindi Dubbed Sports","Hindi Dubbed",2025,"8.0","Sports","A Hindi-dubbed sports movie listing."]
 ];
 
 let category="All";
 let sortBy="rating";
 let favorites=JSON.parse(localStorage.getItem("rbFavorites")||"[]");
+let selectedMovie=null;
 
 function setCategory(cat){
 category=cat;
@@ -130,15 +211,55 @@ localStorage.setItem("rbFavorites",JSON.stringify(favorites));
 showMovies();
 }
 
+function openMovie(index){
+selectedMovie=index;
+
+const m=movies[index];
+
+document.getElementById("modalTitle").textContent=m[0];
+
+document.getElementById("modalInfo").textContent=
+"⭐ "+m[3]+"   •   "+m[2]+"   •   "+m[1]+"   •   "+m[4];
+
+document.getElementById("modalDescription").textContent=m[5];
+
+document.getElementById("favButton").textContent=
+favorites.includes(m[0])
+?"❤️ Remove from Favorites"
+:"❤️ Add to Favorites";
+
+document.getElementById("modal").style.display="flex";
+}
+
+function favoriteFromModal(){
+if(selectedMovie===null)return;
+
+toggleFavorite(movies[selectedMovie][0]);
+
+document.getElementById("favButton").textContent=
+favorites.includes(movies[selectedMovie][0])
+?"❤️ Remove from Favorites"
+:"❤️ Add to Favorites";
+}
+
+function closeModal(event){
+
+if(event && event.target!==document.getElementById("modal"))return;
+
+document.getElementById("modal").style.display="none";
+}
+
 function showMovies(){
 
 const query=document.getElementById("search").value.toLowerCase();
 
-let list=movies.filter(m=>{
+let list=movies.map((m,i)=>({m,i})).filter(x=>{
+
+const m=x.m;
 
 const matchesCategory=
 category==="All" ||
-category==="Favorites" && favorites.includes(m[0]) ||
+(category==="Favorites" && favorites.includes(m[0])) ||
 m[1]===category;
 
 const matchesSearch=
@@ -151,17 +272,14 @@ String(m[2]).includes(query);
 return matchesCategory && matchesSearch;
 });
 
-if(sortBy==="rating"){
-list.sort((a,b)=>Number(b[3])-Number(a[3]));
-}
+if(sortBy==="rating")
+list.sort((a,b)=>Number(b.m[3])-Number(a.m[3]));
 
-if(sortBy==="year"){
-list.sort((a,b)=>b[2]-a[2]);
-}
+if(sortBy==="year")
+list.sort((a,b)=>b.m[2]-a.m[2]);
 
-if(sortBy==="title"){
-list.sort((a,b)=>a[0].localeCompare(b[0]));
-}
+if(sortBy==="title")
+list.sort((a,b)=>a.m[0].localeCompare(b.m[0]));
 
 const box=document.getElementById("movies");
 
@@ -170,16 +288,19 @@ box.innerHTML='<div class="empty">😕 No movies found</div>';
 return;
 }
 
-box.innerHTML=list.map(m=>{
+box.innerHTML=list.map(x=>{
 
+const m=x.m;
+const i=x.i;
 const liked=favorites.includes(m[0]);
 
 return `
-<div class="card">
+<div class="card" onclick="openMovie(${i})">
 
 <div class="poster">🎬</div>
 
-<button class="favorite" onclick="toggleFavorite('${m[0]}')">
+<button class="favorite"
+onclick="event.stopPropagation();toggleFavorite('${m[0]}')">
 ${liked?"❤️":"♡"}
 </button>
 
