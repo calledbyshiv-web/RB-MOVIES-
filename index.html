@@ -7,210 +7,45 @@
 
 <style>
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#070707;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  padding:18px 16px;
-  background:rgba(7,7,7,.95);
-  border-bottom:1px solid #252525;
-  backdrop-filter:blur(12px)
-}
-
-.top{
-  max-width:1150px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px
-}
-
-.logo{
-  font-size:25px;
-  font-weight:900;
-  color:#e50914;
-  white-space:nowrap
-}
-
+body{margin:0;background:#070707;color:#fff;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:20;padding:18px 16px;background:rgba(7,7,7,.96);border-bottom:1px solid #252525;backdrop-filter:blur(12px)}
+.top{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:25px;font-weight:900;color:#e50914;white-space:nowrap}
 .logo span{color:#fff}
-
-.search{
-  width:100%;
-  max-width:480px;
-  padding:14px 18px;
-  border:1px solid #333;
-  border-radius:30px;
-  background:#151515;
-  color:#fff;
-  outline:none;
-  font-size:15px
-}
-
+.search{width:100%;max-width:480px;padding:14px 18px;border:1px solid #333;border-radius:30px;background:#151515;color:#fff;outline:none;font-size:15px}
 .search:focus{border-color:#e50914}
 
-nav{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding:12px 16px;
-  background:#0d0d0d;
-  scrollbar-width:none
-}
-
+nav{display:flex;gap:8px;overflow:auto;padding:12px 16px;background:#0d0d0d;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
+button{font-family:inherit;cursor:pointer}
+nav button,.sort button{border:1px solid #333;background:#171717;color:#ddd;border-radius:22px;padding:9px 15px;white-space:nowrap}
+nav button:hover,.sort button:hover{background:#e50914;color:#fff;border-color:#e50914}
 
-button{
-  font-family:inherit;
-  cursor:pointer
-}
+.hero{max-width:1150px;margin:20px auto;padding:48px 28px;border-radius:22px;border:1px solid #292929;background:linear-gradient(115deg,#300000,#130606 50%,#080808);position:relative;overflow:hidden}
+.hero:after{content:"🎬";position:absolute;right:30px;top:5px;font-size:135px;opacity:.07}
+.hero small{color:#e50914;font-weight:bold;letter-spacing:3px}
+.hero h1{font-size:44px;margin:10px 0;max-width:650px}
+.hero p{color:#aaa;line-height:1.6;max-width:650px}
+.badge{display:inline-block;margin-top:8px;padding:9px 16px;border-radius:20px;background:#e50914;font-size:13px;font-weight:bold}
 
-nav button,
-.sort button{
-  border:1px solid #333;
-  background:#171717;
-  color:#ddd;
-  border-radius:22px;
-  padding:9px 15px;
-  white-space:nowrap
-}
+.trending{max-width:1150px;margin:25px auto;padding:0 16px}
+.trending-title{font-size:22px;font-weight:bold;margin-bottom:12px}
+.trending-row{display:flex;gap:12px;overflow:auto;padding-bottom:8px}
+.trend{min-width:210px;padding:16px;border:1px solid #292929;border-radius:15px;background:#121212}
+.trend strong{display:block;margin-bottom:7px}
+.trend span{color:#aaa;font-size:13px}
 
-nav button:hover,
-.sort button:hover{
-  background:#e50914;
-  color:#fff;
-  border-color:#e50914
-}
+.controls{max-width:1150px;margin:20px auto 5px;padding:0 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.section-title{font-size:22px;font-weight:bold}
+.sort{display:flex;gap:7px;overflow:auto}
 
-.hero{
-  max-width:1150px;
-  margin:20px auto;
-  padding:48px 28px;
-  border-radius:22px;
-  border:1px solid #292929;
-  background:linear-gradient(115deg,#300000,#130606 50%,#080808);
-  position:relative;
-  overflow:hidden
-}
+.grid{max-width:1150px;margin:auto;padding:15px 16px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:18px}
+.card{background:#121212;border:1px solid #222;border-radius:16px;overflow:hidden;cursor:pointer;transition:.25s;position:relative}
+.card:hover{transform:translateY(-6px);border-color:#444;box-shadow:0 12px 30px rgba(0,0,0,.55)}
 
-.hero:after{
-  content:"🎬";
-  position:absolute;
-  right:30px;
-  top:5px;
-  font-size:135px;
-  opacity:.07
-}
-
-.hero small{
-  color:#e50914;
-  font-weight:bold;
-  letter-spacing:3px
-}
-
-.hero h1{
-  font-size:44px;
-  margin:10px 0;
-  max-width:650px
-}
-
-.hero p{
-  color:#aaa;
-  line-height:1.6;
-  max-width:650px
-}
-
-.badge{
-  display:inline-block;
-  margin-top:8px;
-  padding:9px 16px;
-  border-radius:20px;
-  background:#e50914;
-  font-size:13px;
-  font-weight:bold
-}
-
-.controls{
-  max-width:1150px;
-  margin:20px auto 5px;
-  padding:0 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px
-}
-
-.section-title{
-  font-size:22px;
-  font-weight:bold
-}
-
-.sort{
-  display:flex;
-  gap:7px;
-  overflow:auto
-}
-
-.grid{
-  max-width:1150px;
-  margin:auto;
-  padding:15px 16px 40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(165px,1fr));
-  gap:18px
-}
-
-.card{
-  background:#121212;
-  border:1px solid #222;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.25s;
-  position:relative
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#444;
-  box-shadow:0 12px 30px rgba(0,0,0,.55)
-}
-
-.poster{
-  height:235px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:15px;
-  position:relative;
-  overflow:hidden
-}
-
-.poster:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.18),transparent 45%)
-}
-
-.poster-title{
-  position:relative;
-  z-index:2;
-  font-size:22px;
-  font-weight:900;
-  text-transform:uppercase;
-  text-shadow:0 3px 12px #000
-}
-
+.poster{height:235px;display:flex;align-items:center;justify-content:center;text-align:center;padding:15px;position:relative;overflow:hidden}
+.poster:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.18),transparent 45%)}
+.poster-title{position:relative;z-index:2;font-size:22px;font-weight:900;text-transform:uppercase;text-shadow:0 3px 12px #000}
 .p1{background:linear-gradient(145deg,#4b0000,#110000)}
 .p2{background:linear-gradient(145deg,#111d3b,#05070d)}
 .p3{background:linear-gradient(145deg,#3b2100,#0d0900)}
@@ -218,156 +53,39 @@ nav button:hover,
 .p5{background:linear-gradient(145deg,#003b31,#020c0a)}
 .p6{background:linear-gradient(145deg,#3b001e,#0c0007)}
 
-.card-body{
-  padding:12px
-}
+.card-body{padding:12px}
+.card h3{margin:0 0 8px;font-size:16px}
+.meta{color:#999;font-size:12px;margin-bottom:9px}
+.rating{display:inline-block;background:#e50914;padding:5px 8px;border-radius:6px;font-size:12px;font-weight:bold}
+.genre{color:#999;font-size:12px;margin-left:5px}
+.favorite{position:absolute;right:8px;top:8px;z-index:5;border:0;background:rgba(0,0,0,.7);color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px}
 
-.card h3{
-  margin:0 0 8px;
-  font-size:16px
-}
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:#888}
+footer{border-top:1px solid #222;text-align:center;padding:35px 15px;color:#777;font-size:13px}
 
-.meta{
-  color:#999;
-  font-size:12px;
-  margin-bottom:9px
-}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.88);padding:20px;align-items:center;justify-content:center}
+.modal-box{width:100%;max-width:520px;max-height:90vh;overflow:auto;background:#151515;border:1px solid #333;border-radius:20px;padding:22px;position:relative}
+.close{position:absolute;right:12px;top:12px;border:0;background:#333;color:#fff;width:38px;height:38px;border-radius:50%;font-size:22px}
+.modal-poster{height:190px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:60px}
+.modal-box h2{margin:0 0 10px}
+.modal-info{color:#bbb;line-height:1.7}
 
-.rating{
-  display:inline-block;
-  background:#e50914;
-  padding:5px 8px;
-  border-radius:6px;
-  font-size:12px;
-  font-weight:bold
-}
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.fav-btn,.watch-btn{border:0;padding:12px 17px;border-radius:25px;font-weight:bold}
+.fav-btn{background:#e50914;color:#fff}
+.watch-btn{background:#242424;color:#fff;text-decoration:none}
+.watch-btn:hover{background:#333}
 
-.genre{
-  color:#999;
-  font-size:12px;
-  margin-left:5px
-}
-
-.favorite{
-  position:absolute;
-  right:8px;
-  top:8px;
-  z-index:5;
-  border:0;
-  background:rgba(0,0,0,.7);
-  color:#fff;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  font-size:18px
-}
-
-.empty{
-  grid-column:1/-1;
-  text-align:center;
-  padding:70px 20px;
-  color:#888
-}
-
-footer{
-  border-top:1px solid #222;
-  text-align:center;
-  padding:35px 15px;
-  color:#777;
-  font-size:13px
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(0,0,0,.88);
-  padding:20px;
-  align-items:center;
-  justify-content:center
-}
-
-.modal-box{
-  width:100%;
-  max-width:520px;
-  max-height:90vh;
-  overflow:auto;
-  background:#151515;
-  border:1px solid #333;
-  border-radius:20px;
-  padding:22px;
-  position:relative
-}
-
-.close{
-  position:absolute;
-  right:12px;
-  top:12px;
-  border:0;
-  background:#333;
-  color:#fff;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  font-size:22px
-}
-
-.modal-poster{
-  height:190px;
-  border-radius:15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:20px;
-  font-size:60px
-}
-
-.modal-box h2{
-  margin:0 0 10px
-}
-
-.modal-info{
-  color:#bbb;
-  line-height:1.7
-}
-
-.fav-btn{
-  border:0;
-  padding:12px 18px;
-  border-radius:25px;
-  background:#e50914;
-  color:#fff;
-  font-weight:bold
-}
+.notice{font-size:12px;color:#777;margin-top:12px;line-height:1.5}
 
 @media(max-width:650px){
-
-  .top{
-    flex-direction:column;
-    align-items:stretch
-  }
-
-  .logo{text-align:center}
-
-  .hero{
-    margin:15px;
-    padding:30px 20px
-  }
-
-  .hero h1{font-size:32px}
-
-  .controls{
-    flex-direction:column;
-    align-items:flex-start
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px
-  }
-
-  .poster{height:205px}
+.top{flex-direction:column;align-items:stretch}
+.logo{text-align:center}
+.hero{margin:15px;padding:30px 20px}
+.hero h1{font-size:32px}
+.controls{flex-direction:column;align-items:flex-start}
+.grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.poster{height:205px}
 }
 </style>
 </head>
@@ -375,371 +93,307 @@ footer{
 <body>
 
 <header>
-  <div class="top">
-    <div class="logo">RB <span>MOVIES</span> 🎬</div>
-    <input id="search" class="search"
-      placeholder="🔍 Search movies, genre, year...">
-  </div>
+<div class="top">
+<div class="logo">RB <span>MOVIES</span> 🎬</div>
+<input id="search" class="search" placeholder="🔍 Search movies, genre, year...">
+</div>
 </header>
 
 <nav>
-  <button onclick="setCategory('All')">🏠 All</button>
-  <button onclick="setCategory('Bollywood')">🇮🇳 Bollywood</button>
-  <button onclick="setCategory('Hollywood')">🇺🇸 Hollywood</button>
-  <button onclick="setCategory('South')">🔥 South</button>
-  <button onclick="setCategory('Hindi Dubbed')">🎙️ Hindi Dubbed</button>
-  <button onclick="setCategory('Favorites')">❤️ Favorites</button>
+<button onclick="setCategory('All')">🏠 All</button>
+<button onclick="setCategory('Bollywood')">🇮🇳 Bollywood</button>
+<button onclick="setCategory('Hollywood')">🇺🇸 Hollywood</button>
+<button onclick="setCategory('South')">🔥 South</button>
+<button onclick="setCategory('Hindi Dubbed')">🎙️ Hindi Dubbed</button>
+<button onclick="setCategory('Favorites')">❤️ Favorites</button>
 </nav>
 
 <section class="hero">
-  <small>RB MOVIES</small>
-  <h1>Discover Your Next Movie 🎬</h1>
-  <p>
-    Explore our movie collection by language, genre,
-    year and rating.
-  </p>
-  <span class="badge">🔥 36 TITLES</span>
+<small>RB MOVIES</small>
+<h1>Discover Your Next Movie 🎬</h1>
+<p>Explore movies by language, genre, year and rating.</p>
+<span class="badge">🔥 36 TITLES</span>
+</section>
+
+<section class="trending">
+<div class="trending-title">🔥 Trending Categories</div>
+<div class="trending-row">
+<div class="trend"><strong>🇮🇳 Bollywood</strong><span>Action • Drama • Comedy</span></div>
+<div class="trend"><strong>🇺🇸 Hollywood</strong><span>Action • Sci-Fi • Thriller</span></div>
+<div class="trend"><strong>🔥 South</strong><span>Action • Drama • Adventure</span></div>
+<div class="trend"><strong>🎙️ Hindi Dubbed</strong><span>Action • Sci-Fi • Thriller</span></div>
+</div>
 </section>
 
 <div class="controls">
-  <div class="section-title">🔥 Movie Collection</div>
-
-  <div class="sort">
-    <button onclick="sortMovies('rating')">⭐ Rating</button>
-    <button onclick="sortMovies('year')">📅 Newest</button>
-    <button onclick="sortMovies('title')">🔤 A-Z</button>
-  </div>
+<div class="section-title">🎬 Movie Collection</div>
+<div class="sort">
+<button onclick="sortMovies('rating')">⭐ Rating</button>
+<button onclick="sortMovies('year')">📅 Newest</button>
+<button onclick="sortMovies('title')">🔤 A-Z</button>
+</div>
 </div>
 
 <div id="movies" class="grid"></div>
 
 <footer>
-  <strong>🎬 RB MOVIES</strong>
-  <p>Movie discovery platform</p>
-  <p>© 2026 RB Movies • Legal content only</p>
+<strong>🎬 RB MOVIES</strong>
+<p>Movie discovery platform</p>
+<p>© 2026 RB Movies • Legal content only</p>
 </footer>
 
 <div id="modal" class="modal" onclick="outsideClose(event)">
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button class="close" onclick="closeModal()">×</button>
+<button class="close" onclick="closeModal()">×</button>
 
-    <div id="modalPoster" class="modal-poster"></div>
+<div id="modalPoster" class="modal-poster"></div>
 
-    <h2 id="modalTitle"></h2>
+<h2 id="modalTitle"></h2>
 
-    <p id="modalInfo" class="modal-info"></p>
+<p id="modalInfo" class="modal-info"></p>
 
-    <p id="modalDescription" class="modal-info"></p>
+<p id="modalDescription" class="modal-info"></p>
 
-    <button id="favButton"
-      class="fav-btn"
-      onclick="favoriteFromModal()">
-      ❤️ Add to Favorites
-    </button>
+<div class="action-row">
+<button id="favButton" class="fav-btn" onclick="favoriteFromModal()">
+❤️ Add to Favorites
+</button>
 
-  </div>
+<a id="officialSearch"
+class="watch-btn"
+target="_blank"
+rel="noopener noreferrer">
+🔎 Find Official Watch Options
+</a>
+</div>
+
+<div class="notice">
+This button searches for the title so visitors can choose an official/legal viewing service. No unauthorized streaming or download links are provided.
+</div>
+
+</div>
 </div>
 
 <script>
 
-const movies = [
+const movies=[
 
-["Bollywood Action","Bollywood",2026,"8.4","Action","p1",
-"An action-packed Bollywood movie discovery listing."],
+["Bollywood Action","Bollywood",2026,"8.4","Action","p1","An action-packed Bollywood movie discovery listing."],
+["Bollywood Drama","Bollywood",2025,"8.1","Drama","p2","A dramatic Bollywood movie discovery listing."],
+["Bollywood Comedy","Bollywood",2026,"7.9","Comedy","p3","A fun Bollywood comedy discovery listing."],
+["Bollywood Thriller","Bollywood",2025,"8.3","Thriller","p4","A suspenseful Bollywood thriller listing."],
+["Bollywood Romance","Bollywood",2024,"7.8","Romance","p5","A romantic Bollywood movie listing."],
+["Bollywood Mystery","Bollywood",2026,"8.0","Mystery","p6","A mysterious Bollywood movie listing."],
 
-["Bollywood Drama","Bollywood",2025,"8.1","Drama","p2",
-"A dramatic Bollywood movie discovery listing."],
+["Hollywood Action","Hollywood",2026,"8.7","Action","p2","A high-energy Hollywood action listing."],
+["Hollywood Adventure","Hollywood",2025,"8.3","Adventure","p3","An adventurous Hollywood movie listing."],
+["Hollywood Sci-Fi","Hollywood",2026,"8.8","Sci-Fi","p4","A futuristic Hollywood sci-fi listing."],
+["Hollywood Thriller","Hollywood",2025,"8.4","Thriller","p1","A suspenseful Hollywood thriller listing."],
+["Hollywood Comedy","Hollywood",2024,"7.7","Comedy","p5","A Hollywood comedy listing."],
+["Hollywood Mystery","Hollywood",2026,"8.2","Mystery","p6","A Hollywood mystery listing."],
 
-["Bollywood Comedy","Bollywood",2026,"7.9","Comedy","p3",
-"A fun Bollywood comedy discovery listing."],
+["South Action","South",2026,"8.8","Action","p3","A powerful South Indian action listing."],
+["South Thriller","South",2025,"8.5","Thriller","p1","A South Indian thriller listing."],
+["South Drama","South",2026,"8.2","Drama","p5","A South Indian drama listing."],
+["South Comedy","South",2025,"7.9","Comedy","p6","A South Indian comedy listing."],
+["South Mystery","South",2024,"8.1","Mystery","p2","A South Indian mystery listing."],
+["South Adventure","South",2026,"8.6","Adventure","p4","A South Indian adventure listing."],
 
-["Bollywood Thriller","Bollywood",2025,"8.3","Thriller","p4",
-"A suspenseful Bollywood thriller listing."],
+["Hindi Dubbed Action","Hindi Dubbed",2026,"8.6","Action","p1","A Hindi-dubbed action movie listing."],
+["Hindi Dubbed Thriller","Hindi Dubbed",2025,"8.2","Thriller","p4","A Hindi-dubbed thriller listing."],
+["Hindi Dubbed Adventure","Hindi Dubbed",2026,"8.5","Adventure","p3","A Hindi-dubbed adventure listing."],
+["Hindi Dubbed Sci-Fi","Hindi Dubbed",2025,"8.0","Sci-Fi","p2","A Hindi-dubbed sci-fi listing."],
+["Hindi Dubbed Drama","Hindi Dubbed",2024,"7.8","Drama","p5","A Hindi-dubbed drama listing."],
+["Hindi Dubbed Mystery","Hindi Dubbed",2026,"8.3","Mystery","p6","A Hindi-dubbed mystery listing."],
 
-["Bollywood Romance","Bollywood",2024,"7.8","Romance","p5",
-"A romantic Bollywood movie listing."],
-
-["Bollywood Mystery","Bollywood",2026,"8.0","Mystery","p6",
-"A mysterious Bollywood movie listing."],
-
-["Hollywood Action","Hollywood",2026,"8.7","Action","p2",
-"A high-energy Hollywood action listing."],
-
-["Hollywood Adventure","Hollywood",2025,"8.3","Adventure","p3",
-"An adventurous Hollywood movie listing."],
-
-["Hollywood Sci-Fi","Hollywood",2026,"8.8","Sci-Fi","p4",
-"A futuristic Hollywood sci-fi listing."],
-
-["Hollywood Thriller","Hollywood",2025,"8.4","Thriller","p1",
-"A suspenseful Hollywood thriller listing."],
-
-["Hollywood Comedy","Hollywood",2024,"7.7","Comedy","p5",
-"A Hollywood comedy listing."],
-
-["Hollywood Mystery","Hollywood",2026,"8.2","Mystery","p6",
-"A Hollywood mystery listing."],
-
-["South Action","South",2026,"8.8","Action","p3",
-"A powerful South Indian action listing."],
-
-["South Thriller","South",2025,"8.5","Thriller","p1",
-"A South Indian thriller listing."],
-
-["South Drama","South",2026,"8.2","Drama","p5",
-"A South Indian drama listing."],
-
-["South Comedy","South",2025,"7.9","Comedy","p6",
-"A South Indian comedy listing."],
-
-["South Mystery","South",2024,"8.1","Mystery","p2",
-"A South Indian mystery listing."],
-
-["South Adventure","South",2026,"8.6","Adventure","p4",
-"A South Indian adventure listing."],
-
-["Hindi Dubbed Action","Hindi Dubbed",2026,"8.6","Action","p1",
-"A Hindi-dubbed action movie listing."],
-
-["Hindi Dubbed Thriller","Hindi Dubbed",2025,"8.2","Thriller","p4",
-"A Hindi-dubbed thriller listing."],
-
-["Hindi Dubbed Adventure","Hindi Dubbed",2026,"8.5","Adventure","p3",
-"A Hindi-dubbed adventure listing."],
-
-["Hindi Dubbed Sci-Fi","Hindi Dubbed",2025,"8.0","Sci-Fi","p2",
-"A Hindi-dubbed sci-fi listing."],
-
-["Hindi Dubbed Drama","Hindi Dubbed",2024,"7.8","Drama","p5",
-"A Hindi-dubbed drama listing."],
-
-["Hindi Dubbed Mystery","Hindi Dubbed",2026,"8.3","Mystery","p6",
-"A Hindi-dubbed mystery listing."],
-
-["Bollywood Crime","Bollywood",2026,"8.5","Crime","p6",
-"A Bollywood crime movie listing."],
-
-["Bollywood Family","Bollywood",2025,"7.9","Family","p5",
-"A Bollywood family movie listing."],
-
-["Hollywood Crime","Hollywood",2026,"8.6","Crime","p1",
-"A Hollywood crime movie listing."],
-
-["Hollywood Family","Hollywood",2025,"7.8","Family","p3",
-"A Hollywood family movie listing."],
-
-["South Crime","South",2026,"8.4","Crime","p4",
-"A South Indian crime movie listing."],
-
-["South Family","South",2025,"7.7","Family","p2",
-"A South Indian family movie listing."],
-
-["Hindi Dubbed Crime","Hindi Dubbed",2026,"8.4","Crime","p6",
-"A Hindi-dubbed crime movie listing."],
-
-["Hindi Dubbed Family","Hindi Dubbed",2025,"7.9","Family","p5",
-"A Hindi-dubbed family movie listing."],
-
-["Bollywood Sports","Bollywood",2024,"8.0","Sports","p3",
-"A Bollywood sports movie listing."],
-
-["Hollywood Sports","Hollywood",2025,"8.1","Sports","p2",
-"A Hollywood sports movie listing."],
-
-["South Sports","South",2024,"8.2","Sports","p4",
-"A South Indian sports movie listing."],
-
-["Hindi Dubbed Sports","Hindi Dubbed",2025,"8.0","Sports","p1",
-"A Hindi-dubbed sports movie listing."]
+["Bollywood Crime","Bollywood",2026,"8.5","Crime","p6","A Bollywood crime movie listing."],
+["Bollywood Family","Bollywood",2025,"7.9","Family","p5","A Bollywood family movie listing."],
+["Hollywood Crime","Hollywood",2026,"8.6","Crime","p1","A Hollywood crime movie listing."],
+["Hollywood Family","Hollywood",2025,"7.8","Family","p3","A Hollywood family movie listing."],
+["South Crime","South",2026,"8.4","Crime","p4","A South Indian crime movie listing."],
+["South Family","South",2025,"7.7","Family","p2","A South Indian family movie listing."],
+["Hindi Dubbed Crime","Hindi Dubbed",2026,"8.4","Crime","p6","A Hindi-dubbed crime movie listing."],
+["Hindi Dubbed Family","Hindi Dubbed",2025,"7.9","Family","p5","A Hindi-dubbed family movie listing."],
+["Bollywood Sports","Bollywood",2024,"8.0","Sports","p3","A Bollywood sports movie listing."],
+["Hollywood Sports","Hollywood",2025,"8.1","Sports","p2","A Hollywood sports movie listing."],
+["South Sports","South",2024,"8.2","Sports","p4","A South Indian sports movie listing."],
+["Hindi Dubbed Sports","Hindi Dubbed",2025,"8.0","Sports","p1","A Hindi-dubbed sports movie listing."]
 ];
 
 let category="All";
 let sortBy="rating";
-let favorites=JSON.parse(
-  localStorage.getItem("rbFavorites") || "[]"
-);
+let favorites=JSON.parse(localStorage.getItem("rbFavorites")||"[]");
 let selectedMovie=null;
 
 function setCategory(cat){
-  category=cat;
-  showMovies();
+category=cat;
+showMovies();
 }
 
 function sortMovies(type){
-  sortBy=type;
-  showMovies();
+sortBy=type;
+showMovies();
 }
 
 function toggleFavorite(title){
 
-  if(favorites.includes(title)){
-    favorites=favorites.filter(x=>x!==title);
-  }else{
-    favorites.push(title);
-  }
+if(favorites.includes(title)){
+favorites=favorites.filter(x=>x!==title);
+}else{
+favorites.push(title);
+}
 
-  localStorage.setItem(
-    "rbFavorites",
-    JSON.stringify(favorites)
-  );
-
-  showMovies();
-  updateFavoriteButton();
+localStorage.setItem("rbFavorites",JSON.stringify(favorites));
+showMovies();
+updateFavoriteButton();
 }
 
 function updateFavoriteButton(){
 
-  if(selectedMovie===null)return;
+if(selectedMovie===null)return;
 
-  const title=movies[selectedMovie][0];
+const title=movies[selectedMovie][0];
 
-  document.getElementById("favButton").textContent =
-    favorites.includes(title)
-    ? "❤️ Remove from Favorites"
-    : "❤️ Add to Favorites";
+document.getElementById("favButton").textContent=
+favorites.includes(title)
+?"❤️ Remove from Favorites"
+:"❤️ Add to Favorites";
 }
 
 function openMovie(index){
 
-  selectedMovie=index;
+selectedMovie=index;
 
-  const m=movies[index];
+const m=movies[index];
 
-  const poster=document.getElementById("modalPoster");
+const poster=document.getElementById("modalPoster");
 
-  poster.className="modal-poster "+m[5];
+poster.className="modal-poster "+m[5];
 
-  poster.innerHTML=
-    '<span class="poster-title">'+m[0]+'</span>';
+poster.innerHTML='<span class="poster-title">'+m[0]+'</span>';
 
-  document.getElementById("modalTitle").textContent=m[0];
+document.getElementById("modalTitle").textContent=m[0];
 
-  document.getElementById("modalInfo").textContent =
-    "⭐ "+m[3]+"  •  "+m[2]+"  •  "+m[1]+"  •  "+m[4];
+document.getElementById("modalInfo").textContent=
+"⭐ "+m[3]+"  •  "+m[2]+"  •  "+m[1]+"  •  "+m[4];
 
-  document.getElementById("modalDescription").textContent=m[6];
+document.getElementById("modalDescription").textContent=m[6];
 
-  updateFavoriteButton();
+const searchUrl=
+"https://www.google.com/search?q="+
+encodeURIComponent(m[0]+" "+m[2]+" where to watch official");
 
-  document.getElementById("modal").style.display="flex";
+document.getElementById("officialSearch").href=searchUrl;
+
+updateFavoriteButton();
+
+document.getElementById("modal").style.display="flex";
 }
 
 function favoriteFromModal(){
 
-  if(selectedMovie===null)return;
+if(selectedMovie===null)return;
 
-  toggleFavorite(movies[selectedMovie][0]);
+toggleFavorite(movies[selectedMovie][0]);
 }
 
 function closeModal(){
-
-  document.getElementById("modal").style.display="none";
+document.getElementById("modal").style.display="none";
 }
 
 function outsideClose(event){
 
-  if(event.target===document.getElementById("modal")){
-    closeModal();
-  }
+if(event.target===document.getElementById("modal")){
+closeModal();
+}
 }
 
 function showMovies(){
 
-  const query=
-    document.getElementById("search").value.toLowerCase();
+const query=
+document.getElementById("search").value.toLowerCase();
 
-  let list=movies
-    .map((m,i)=>({m,i}))
-    .filter(x=>{
+let list=movies
+.map((m,i)=>({m,i}))
+.filter(x=>{
 
-      const m=x.m;
+const m=x.m;
 
-      const categoryMatch =
-        category==="All" ||
-        (category==="Favorites" &&
-        favorites.includes(m[0])) ||
-        m[1]===category;
+const categoryMatch=
+category==="All" ||
+(category==="Favorites" && favorites.includes(m[0])) ||
+m[1]===category;
 
-      const searchMatch =
-        m[0].toLowerCase().includes(query) ||
-        m[1].toLowerCase().includes(query) ||
-        m[4].toLowerCase().includes(query) ||
-        m[3].includes(query) ||
-        String(m[2]).includes(query);
+const searchMatch=
+m[0].toLowerCase().includes(query) ||
+m[1].toLowerCase().includes(query) ||
+m[4].toLowerCase().includes(query) ||
+m[3].includes(query) ||
+String(m[2]).includes(query);
 
-      return categoryMatch && searchMatch;
-    });
+return categoryMatch && searchMatch;
+});
 
-  if(sortBy==="rating"){
-    list.sort((a,b)=>Number(b.m[3])-Number(a.m[3]));
-  }
+if(sortBy==="rating")
+list.sort((a,b)=>Number(b.m[3])-Number(a.m[3]));
 
-  if(sortBy==="year"){
-    list.sort((a,b)=>b.m[2]-a.m[2]);
-  }
+if(sortBy==="year")
+list.sort((a,b)=>b.m[2]-a.m[2]);
 
-  if(sortBy==="title"){
-    list.sort((a,b)=>a.m[0].localeCompare(b.m[0]));
-  }
+if(sortBy==="title")
+list.sort((a,b)=>a.m[0].localeCompare(b.m[0]));
 
-  const box=document.getElementById("movies");
+const box=document.getElementById("movies");
 
-  if(!list.length){
+if(!list.length){
 
-    box.innerHTML=
-      '<div class="empty">😕<br><br>No movies found</div>';
+box.innerHTML=
+'<div class="empty">😕<br><br>No movies found</div>';
 
-    return;
-  }
-
-  box.innerHTML=list.map(x=>{
-
-    const m=x.m;
-    const i=x.i;
-    const liked=favorites.includes(m[0]);
-
-    return `
-      <div class="card" onclick="openMovie(${i})">
-
-        <div class="poster ${m[5]}">
-          <span class="poster-title">${m[0]}</span>
-        </div>
-
-        <button
-          class="favorite"
-          onclick="event.stopPropagation();
-          toggleFavorite('${m[0]}')">
-          ${liked?"❤️":"♡"}
-        </button>
-
-        <div class="card-body">
-
-          <h3>${m[0]}</h3>
-
-          <div class="meta">
-            ${m[1]} • ${m[2]}
-          </div>
-
-          <span class="rating">
-            ⭐ ${m[3]}
-          </span>
-
-          <span class="genre">
-            ${m[4]}
-          </span>
-
-        </div>
-
-      </div>
-    `;
-
-  }).join("");
+return;
 }
 
-document
-  .getElementById("search")
-  .addEventListener("input",showMovies);
+box.innerHTML=list.map(x=>{
+
+const m=x.m;
+const i=x.i;
+const liked=favorites.includes(m[0]);
+
+return `
+<div class="card" onclick="openMovie(${i})">
+
+<div class="poster ${m[5]}">
+<span class="poster-title">${m[0]}</span>
+</div>
+
+<button class="favorite"
+onclick="event.stopPropagation();toggleFavorite('${m[0]}')">
+${liked?"❤️":"♡"}
+</button>
+
+<div class="card-body">
+
+<h3>${m[0]}</h3>
+
+<div class="meta">
+${m[1]} • ${m[2]}
+</div>
+
+<span class="rating">⭐ ${m[3]}</span>
+
+<span class="genre">${m[4]}</span>
+
+</div>
+
+</div>
+`;
+
+}).join("");
+}
+
+document.getElementById("search")
+.addEventListener("input",showMovies);
 
 showMovies();
 
