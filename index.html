@@ -2,831 +2,592 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>RB MOVIES</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-:root{
-  --bg:#050706;
-  --glass:rgba(25,32,27,.58);
-  --line:rgba(255,255,255,.12);
-  --muted:#a9b0aa;
-  --green:#55d66f;
-}
-
-html{
-  background:#050706;
-  scroll-behavior:smooth;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  min-height:100vh;
-  background:#050706;
-  color:white;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
-  "Segoe UI",Arial,sans-serif;
-  overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080808;
+    color:#fff;
 }
 
-/* BACKGROUND */
-
-body:before{
-  content:"";
-  position:fixed;
-  z-index:-5;
-  inset:-15%;
-  background:
-    radial-gradient(
-      ellipse at 20% 15%,
-      rgba(72,185,63,.65),
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at 85% 35%,
-      rgba(21,100,37,.7),
-      transparent 35%
-    ),
-    radial-gradient(
-      ellipse at 45% 80%,
-      rgba(4,77,34,.6),
-      transparent 35%
-    ),
-    linear-gradient(135deg,#071009,#071c0b,#020403);
-  filter:blur(45px);
-  transform:scale(1.15);
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#0d0d0d;
+    border-bottom:1px solid #242424;
+    padding:14px 5%;
 }
 
-body:after{
-  content:"";
-  position:fixed;
-  z-index:-4;
-  inset:0;
-  background:rgba(0,0,0,.28);
-  pointer-events:none;
-}
-
-/* TOP */
-
-.top{
-  padding:
-    calc(20px + env(safe-area-inset-top))
-    18px
-    10px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.back{
-  width:43px;
-  height:43px;
-  border:0;
-  background:rgba(255,255,255,.08);
-  color:white;
-  border-radius:50%;
-  font-size:27px;
-  cursor:pointer;
-  backdrop-filter:blur(15px);
+.nav{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .logo{
-  font-weight:900;
-  letter-spacing:-1px;
-  font-size:21px;
+    font-size:25px;
+    font-weight:900;
+    color:#e50914;
+    white-space:nowrap;
 }
 
 .logo span{
-  color:#7bea88;
-}
-
-/* HERO */
-
-.hero{
-  padding:45px 20px 30px;
-  text-align:center;
-}
-
-.hero-icon{
-  font-size:43px;
-  margin-bottom:20px;
-  filter:drop-shadow(0 5px 15px rgba(0,0,0,.5));
-}
-
-.hero h1{
-  font-size:38px;
-  line-height:1.08;
-  letter-spacing:-1.8px;
-  font-weight:800;
-  max-width:430px;
-  margin:auto;
-}
-
-.hero p{
-  margin-top:12px;
-  color:#c0c8c1;
-  font-size:14px;
-}
-
-/* SEARCH */
-
-.search-wrap{
-  padding:0 16px;
-}
-
-.search-box{
-  height:62px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:32px;
-  background:rgba(255,255,255,.09);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  display:flex;
-  align-items:center;
-  padding:0 20px;
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.08),
-    0 15px 45px rgba(0,0,0,.2);
-}
-
-.search-icon{
-  font-size:24px;
-  margin-right:13px;
-  opacity:.7;
+    color:#fff;
 }
 
 .search{
-  flex:1;
-  min-width:0;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:white;
-  font-size:17px;
+    width:350px;
+    max-width:50%;
 }
 
-.search::placeholder{
-  color:rgba(255,255,255,.38);
+.search input{
+    width:100%;
+    padding:12px 16px;
+    border:none;
+    outline:none;
+    border-radius:25px;
+    background:#1b1b1b;
+    color:#fff;
+    font-size:14px;
 }
 
-/* CONTENT */
-
-.container{
-  padding:50px 16px 120px;
-  max-width:1100px;
-  margin:auto;
+.search input::placeholder{
+    color:#888;
 }
 
-.section-title{
-  font-size:28px;
-  font-weight:800;
-  letter-spacing:-.8px;
-  margin-bottom:20px;
+/* HERO */
+.hero{
+    min-height:420px;
+    padding:70px 6%;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(90deg,#050505 0%,rgba(5,5,5,.92) 35%,rgba(5,5,5,.35) 100%),
+    url("https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg")
+    center/cover;
 }
 
-.section-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
+.hero-content{
+    max-width:650px;
 }
 
-.see-all{
-  border:0;
-  background:transparent;
-  color:#b8c0b9;
-  font-size:13px;
-  cursor:pointer;
+.badge{
+    display:inline-block;
+    background:#e50914;
+    padding:7px 14px;
+    border-radius:5px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:52px;
+    line-height:1;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#ccc;
+    line-height:1.6;
+    margin-bottom:22px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.btn-red{
+    background:#e50914;
+    color:#fff;
+}
+
+.btn-dark{
+    background:#252525;
+    color:#fff;
+    margin-left:8px;
 }
 
 /* CATEGORY */
-
 .categories{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  margin-bottom:30px;
-  scrollbar-width:none;
+    max-width:1250px;
+    margin:30px auto 10px;
+    padding:0 20px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
 }
 
 .categories::-webkit-scrollbar{
-  display:none;
+    display:none;
 }
 
 .cat{
-  white-space:nowrap;
-  padding:10px 16px;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  color:#aaa;
-  cursor:pointer;
-  backdrop-filter:blur(12px);
+    flex:none;
+    padding:9px 18px;
+    background:#181818;
+    border:1px solid #292929;
+    border-radius:20px;
+    color:#ccc;
+    cursor:pointer;
 }
 
-.cat.active{
-  background:white;
-  color:#111;
+.cat.active,
+.cat:hover{
+    background:#e50914;
+    color:#fff;
 }
 
-/* GRID */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+/* SECTION */
+.section{
+    max-width:1250px;
+    margin:30px auto;
+    padding:0 20px;
 }
 
-/* CARD */
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    font-size:23px;
+}
+
+.section-title span{
+    color:#e50914;
+    font-size:13px;
+}
+
+/* MOVIE GRID */
+.movies{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:18px;
+}
 
 .card{
-  min-width:0;
-  cursor:pointer;
-  position:relative;
+    background:#121212;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.25s;
+    border:1px solid #1f1f1f;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#e50914;
 }
 
 .poster{
-  height:300px;
-  border-radius:19px;
-  overflow:hidden;
-  position:relative;
-  background:#182019;
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 12px 30px rgba(0,0,0,.28);
-  transition:.25s ease;
-}
-
-.card:hover .poster{
-  transform:translateY(-5px);
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
-}
-
-.poster:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(255,255,255,.3),
-      transparent 20%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 40%,
-      rgba(0,0,0,.9)
-    );
-}
-
-.poster-content{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:16px;
-}
-
-.poster-icon{
-  font-size:58px;
-  margin-bottom:auto;
-  padding-top:25px;
-  text-align:center;
-  filter:drop-shadow(0 7px 15px rgba(0,0,0,.5));
-}
-
-.poster-title{
-  font-size:18px;
-  line-height:1.05;
-  font-weight:900;
-  text-shadow:0 3px 12px #000;
-}
-
-.poster-year{
-  font-size:12px;
-  color:#ddd;
-  margin-top:7px;
-}
-
-.favorite{
-  position:absolute;
-  right:10px;
-  top:10px;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(0,0,0,.45);
-  color:white;
-  backdrop-filter:blur(10px);
-  cursor:pointer;
-  z-index:4;
-  font-size:17px;
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    display:block;
 }
 
 .card-info{
-  padding:11px 3px 0;
+    padding:10px;
 }
 
-.card-name{
-  font-size:15px;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.card-title{
+    font-size:14px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.card-meta{
-  margin-top:5px;
-  color:#9ba19c;
-  font-size:12px;
+.meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:7px;
+    color:#888;
+    font-size:11px;
 }
 
 .rating{
-  color:#ffd966;
-}
-
-/* DIFFERENT POSTERS */
-
-.p1{
-  background:
-    radial-gradient(circle at 50% 30%,#ffdb82,transparent 20%),
-    linear-gradient(145deg,#61390b,#101308 55%,#2b5a20);
-}
-
-.p2{
-  background:
-    radial-gradient(circle at 55% 25%,#d51c27,transparent 22%),
-    linear-gradient(145deg,#151b52,#07110b 55%,#5e090e);
-}
-
-.p3{
-  background:
-    radial-gradient(circle at 55% 28%,#ffe7a0,transparent 18%),
-    linear-gradient(145deg,#6c1d17,#14100b 55%,#321006);
-}
-
-.p4{
-  background:
-    radial-gradient(circle at 60% 22%,#9e67ff,transparent 23%),
-    linear-gradient(145deg,#211049,#070a12 60%,#12345c);
-}
-
-.p5{
-  background:
-    radial-gradient(circle at 45% 25%,#65e59d,transparent 22%),
-    linear-gradient(145deg,#123d29,#07120c 60%,#0d563c);
-}
-
-.p6{
-  background:
-    radial-gradient(circle at 50% 20%,#ff6095,transparent 22%),
-    linear-gradient(145deg,#54152e,#10070d 60%,#290b24);
-}
-
-.p7{
-  background:
-    radial-gradient(circle at 50% 25%,#fff1bf,transparent 20%),
-    linear-gradient(145deg,#40351a,#0a0c0a 55%,#192f23);
-}
-
-.p8{
-  background:
-    radial-gradient(circle at 50% 25%,#54b9ff,transparent 23%),
-    linear-gradient(145deg,#092d54,#050a12 55%,#132b51);
+    color:#ffc107;
 }
 
 /* EMPTY */
-
 .empty{
-  grid-column:1/-1;
-  padding:80px 20px;
-  text-align:center;
-  color:#89908a;
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-  position:fixed;
-  z-index:300;
-  left:14px;
-  right:14px;
-  bottom:
-    calc(13px + env(safe-area-inset-bottom));
-  height:76px;
-  border-radius:39px;
-  background:rgba(25,31,28,.75);
-  border:1px solid rgba(255,255,255,.14);
-  backdrop-filter:blur(28px);
-  -webkit-backdrop-filter:blur(28px);
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  box-shadow:0 15px 45px rgba(0,0,0,.45);
-}
-
-.nav-btn{
-  border:0;
-  background:transparent;
-  color:#929992;
-  min-width:55px;
-  height:62px;
-  border-radius:30px;
-  cursor:pointer;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:3px;
-}
-
-.nav-btn span{
-  font-size:22px;
-}
-
-.nav-btn small{
-  font-size:9px;
-}
-
-.nav-btn.active{
-  color:white;
-  background:rgba(255,255,255,.13);
+    display:none;
+    text-align:center;
+    padding:50px 20px;
+    color:#888;
 }
 
 /* MODAL */
-
 .modal{
-  position:fixed;
-  z-index:500;
-  inset:0;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(12px);
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(0,0,0,.88);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
 .modal.show{
-  display:flex;
+    display:flex;
 }
 
 .modal-box{
-  width:min(650px,100%);
-  max-height:88vh;
-  overflow:auto;
-  border-radius:28px 28px 0 0;
-  background:#111612;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 -20px 80px #000;
-}
-
-.modal-poster{
-  height:310px;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  padding:25px;
-}
-
-.modal-poster:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    #111612,
-    transparent 70%
-  );
-}
-
-.modal-poster-title{
-  position:relative;
-  z-index:2;
-  font-size:32px;
-  font-weight:900;
+    width:900px;
+    max-width:100%;
+    max-height:90vh;
+    overflow:auto;
+    background:#141414;
+    border-radius:12px;
+    position:relative;
+    border:1px solid #292929;
 }
 
 .close{
-  position:absolute;
-  z-index:5;
-  right:15px;
-  top:15px;
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:rgba(0,0,0,.6);
-  color:white;
-  font-size:25px;
-  cursor:pointer;
+    position:absolute;
+    right:15px;
+    top:12px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:none;
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    z-index:3;
 }
 
 .modal-content{
-  padding:5px 22px 30px;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:25px;
+    padding:30px;
 }
 
-.modal-info{
-  color:#aeb6af;
-  line-height:1.6;
-  margin-top:10px;
+.modal-poster{
+    width:100%;
+    border-radius:8px;
 }
 
-.action-row{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
+.modal-details h2{
+    font-size:30px;
+    margin-bottom:12px;
 }
 
-.action-row button,
-.watch-btn{
-  flex:1;
-  border:0;
-  padding:14px;
-  border-radius:25px;
-  text-align:center;
-  text-decoration:none;
-  font-weight:700;
-  cursor:pointer;
+.modal-details p{
+    color:#bbb;
+    line-height:1.7;
+    margin:15px 0;
 }
 
-.watch-btn{
-  background:white;
-  color:#111;
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
-.fav-btn{
-  background:#263029;
-  color:white;
+.tag{
+    padding:6px 10px;
+    background:#242424;
+    border-radius:5px;
+    font-size:12px;
 }
 
-.notice{
-  color:#6f776f;
-  font-size:11px;
-  line-height:1.5;
-  margin-top:15px;
+/* SUPPORT */
+.support{
+    max-width:1150px;
+    margin:40px auto;
+    padding:28px;
+    text-align:center;
+    background:linear-gradient(135deg,#171717,#0d0d0d);
+    border:1px solid #292929;
+    border-radius:12px;
+}
+
+.support h2{
+    margin-bottom:10px;
+}
+
+.support p{
+    color:#999;
+    margin-bottom:18px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px 20px;
+    color:#777;
+    border-top:1px solid #1d1d1d;
+    margin-top:40px;
+}
+
+footer strong{
+    color:#e50914;
 }
 
 /* RESPONSIVE */
+@media(max-width:1100px){
+    .movies{
+        grid-template-columns:repeat(5,1fr);
+    }
+}
 
 @media(max-width:850px){
-  .grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+    .movies{
+        grid-template-columns:repeat(4,1fr);
+    }
 
-  .poster{
-    height:270px;
-  }
+    .hero h1{
+        font-size:42px;
+    }
+
+    .search{
+        max-width:45%;
+    }
 }
 
 @media(max-width:600px){
+    header{
+        padding:12px 4%;
+    }
 
-  .hero{
-    padding-top:42px;
-  }
+    .nav{
+        flex-wrap:wrap;
+    }
 
-  .hero h1{
-    font-size:35px;
-  }
+    .logo{
+        font-size:21px;
+    }
 
-  .container{
-    padding-top:43px;
-  }
+    .search{
+        order:3;
+        max-width:100%;
+        width:100%;
+    }
 
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:13px;
-  }
+    .hero{
+        min-height:390px;
+        padding:50px 5%;
+        background-position:center;
+    }
 
-  .poster{
-    height:245px;
-    border-radius:17px;
-  }
+    .hero h1{
+        font-size:36px;
+    }
 
-  .poster-title{
-    font-size:17px;
-  }
+    .movies{
+        grid-template-columns:repeat(2,1fr);
+        gap:13px;
+    }
 
-  .poster-icon{
-    font-size:50px;
-  }
+    .modal-content{
+        grid-template-columns:1fr;
+        padding:20px;
+    }
 
-  .section-title{
-    font-size:25px;
-  }
+    .modal-poster{
+        max-width:220px;
+        margin:auto;
+    }
 
-  .card-name{
-    font-size:14px;
-  }
-}
-
-@media(min-width:900px){
-  .bottom-nav{
-    width:500px;
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
-  }
+    .modal-details h2{
+        font-size:25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP -->
+<header>
+    <div class="nav">
 
-<div class="top">
+        <div class="logo">
+            RB <span>MOVIES</span>
+        </div>
 
-  <button class="back" onclick="history.back()">‹</button>
+        <div class="search">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search movies..."
+                onkeyup="searchMovies()"
+            >
+        </div>
 
-  <div class="logo">
-    RB <span>MOVIES</span> 🎬
-  </div>
-
-  <div style="width:43px"></div>
-
-</div>
+    </div>
+</header>
 
 
 <!-- HERO -->
 
 <section class="hero">
 
-  <div class="hero-icon">🎬</div>
+    <div class="hero-content">
 
-  <h1>
-    What are you in the mood for?
-  </h1>
+        <span class="badge">FEATURED MOVIE</span>
 
-  <p>
-    Discover movies & TV shows you'll love.
-  </p>
+        <h1>Movie Night Starts Here</h1>
+
+        <p>
+            Discover movies, explore details, check ratings and
+            find your next favourite movie on RB MOVIES.
+        </p>
+
+        <button class="btn btn-red" onclick="scrollMovies()">
+            Explore Movies
+        </button>
+
+        <button class="btn btn-dark" onclick="showInfo()">
+            More Info
+        </button>
+
+    </div>
 
 </section>
 
 
-<!-- SEARCH -->
+<!-- CATEGORIES -->
 
-<div class="search-wrap">
+<div class="categories">
 
-  <div class="search-box">
+    <button class="cat active" onclick="filterMovies('All',this)">
+        All
+    </button>
 
-    <span class="search-icon">⌕</span>
+    <button class="cat" onclick="filterMovies('Action',this)">
+        Action
+    </button>
 
-    <input
-      id="search"
-      class="search"
-      type="search"
-      placeholder="Search for movies & TV shows..."
-    >
+    <button class="cat" onclick="filterMovies('Drama',this)">
+        Drama
+    </button>
 
-  </div>
+    <button class="cat" onclick="filterMovies('Comedy',this)">
+        Comedy
+    </button>
+
+    <button class="cat" onclick="filterMovies('Thriller',this)">
+        Thriller
+    </button>
+
+    <button class="cat" onclick="filterMovies('Sci-Fi',this)">
+        Sci-Fi
+    </button>
 
 </div>
 
 
-<!-- MAIN -->
+<!-- MOVIES -->
 
-<main class="container">
+<section class="section" id="moviesSection">
 
-  <div class="categories">
+    <div class="section-title">
+        <h2>Popular Movies</h2>
+        <span>VIEW ALL</span>
+    </div>
 
-    <button class="cat active" data-cat="All">
-      All
+    <div class="movies" id="movieGrid"></div>
+
+    <div class="empty" id="empty">
+        No movies found.
+    </div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section class="support">
+
+    <h2>❤️ Support RB MOVIES</h2>
+
+    <p>
+        Enjoying the website? Your support helps us keep improving
+        the movie discovery experience.
+    </p>
+
+    <button class="btn btn-red" onclick="showSupport()">
+        Support Us
     </button>
 
-    <button class="cat" data-cat="Bollywood">
-      🇮🇳 Bollywood
-    </button>
-
-    <button class="cat" data-cat="Hollywood">
-      🇺🇸 Hollywood
-    </button>
-
-    <button class="cat" data-cat="South">
-      🔥 South
-    </button>
-
-    <button class="cat" data-cat="Hindi Dubbed">
-      🎙️ Hindi Dubbed
-    </button>
-
-    <button class="cat" data-cat="Favorites">
-      ❤️ Favorites
-    </button>
-
-  </div>
+</section>
 
 
-  <div class="section-row">
-
-    <h2 class="section-title" id="sectionTitle">
-      Trending Today
-    </h2>
-
-    <button class="see-all" onclick="setCategory('All')">
-      See all
-    </button>
-
-  </div>
-
-
-  <div id="movies" class="grid"></div>
-
-</main>
-
-
-<!-- BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-  <button class="nav-btn active" data-nav="home">
-    <span>⌂</span>
-    <small>Home</small>
-  </button>
-
-  <button class="nav-btn" data-nav="movies">
-    <span>▣</span>
-    <small>Movies</small>
-  </button>
-
-  <button class="nav-btn" data-nav="tv">
-    <span>▤</span>
-    <small>TV</small>
-  </button>
-
-  <button class="nav-btn" data-nav="favorites">
-    <span>♡</span>
-    <small>Watchlist</small>
-  </button>
-
-  <button class="nav-btn" data-nav="search">
-    <span>⌕</span>
-    <small>Search</small>
-  </button>
-
-</nav>
+<footer>
+    © 2026 <strong>RB MOVIES</strong> — Movie Discovery Website
+</footer>
 
 
 <!-- MODAL -->
 
-<div
-  id="modal"
-  class="modal"
-  onclick="outsideClose(event)"
->
+<div class="modal" id="movieModal">
 
-  <div class="modal-box">
+    <div class="modal-box">
 
-    <button class="close" onclick="closeModal()">
-      ×
-    </button>
+        <button class="close" onclick="closeModal()">×</button>
 
-    <div id="modalPoster" class="modal-poster"></div>
+        <div class="modal-content">
 
-    <div class="modal-content">
+            <img
+                id="modalPoster"
+                class="modal-poster"
+                src=""
+                alt="Movie Poster"
+            >
 
-      <h2 id="modalTitle"></h2>
+            <div class="modal-details">
 
-      <p id="modalInfo" class="modal-info"></p>
+                <h2 id="modalTitle"></h2>
 
-      <p id="modalDescription" class="modal-info"></p>
+                <div class="tags">
 
-      <div class="action-row">
+                    <span class="tag" id="modalYear"></span>
 
-        <button
-          id="favButton"
-          class="fav-btn"
-          onclick="favoriteFromModal()"
-        >
-          ♡ Add to Watchlist
-        </button>
+                    <span class="tag" id="modalGenre"></span>
 
-        <a
-          id="officialSearch"
-          class="watch-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Find Official Watch
-        </a>
+                    <span class="tag" id="modalRating"></span>
 
-      </div>
+                </div>
 
-      <div class="notice">
-        RB Movies is a movie discovery interface.
-        Viewing options are directed to official/legal sources.
-      </div>
+                <p id="modalDescription"></p>
+
+                <button class="btn btn-red" onclick="alert('Coming soon!')">
+                    Watch Now
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
 
 </div>
 
@@ -837,633 +598,314 @@ body:after{
 
 const movies = [
 
-  {
-    title:"Spider-Man: Brand New Day",
-    cat:"Hollywood",
-    year:2026,
-    rating:"7.9",
+{
+    title:"Avengers: Endgame",
+    year:"2019",
     genre:"Action",
-    poster:"p2",
-    icon:"🕷️",
-    desc:"Discover this title and check official services for availability."
-  },
-
-  {
-    title:"Toy Story",
-    cat:"Hollywood",
-    year:2026,
-    rating:"8.8",
-    genre:"Animation",
-    poster:"p1",
-    icon:"🤠",
-    desc:"An animated movie discovery listing."
-  },
-
-  {
-    title:"Action Storm",
-    cat:"Bollywood",
-    year:2026,
     rating:"8.4",
+    poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+    description:"The Avengers face their biggest battle as they attempt to undo the devastating events that changed the universe."
+},
+
+{
+    title:"Spider-Man: No Way Home",
+    year:"2021",
     genre:"Action",
-    poster:"p3",
-    icon:"🔥",
-    desc:"A Bollywood action discovery listing."
-  },
-
-  {
-    title:"The Last Mission",
-    cat:"Hollywood",
-    year:2026,
-    rating:"8.7",
-    genre:"Action",
-    poster:"p8",
-    icon:"⚡",
-    desc:"A Hollywood action discovery listing."
-  },
-
-  {
-    title:"Midnight Mystery",
-    cat:"Hollywood",
-    year:2025,
-    rating:"8.4",
-    genre:"Thriller",
-    poster:"p4",
-    icon:"🌙",
-    desc:"A thriller movie discovery listing."
-  },
-
-  {
-    title:"Dil Se",
-    cat:"Bollywood",
-    year:2025,
-    rating:"8.1",
-    genre:"Drama",
-    poster:"p5",
-    icon:"❤️",
-    desc:"A Bollywood drama discovery listing."
-  },
-
-  {
-    title:"South Warrior",
-    cat:"South",
-    year:2026,
-    rating:"8.8",
-    genre:"Action",
-    poster:"p3",
-    icon:"⚔️",
-    desc:"A South Indian action discovery listing."
-  },
-
-  {
-    title:"Kingdom",
-    cat:"South",
-    year:2026,
-    rating:"8.6",
-    genre:"Adventure",
-    poster:"p7",
-    icon:"👑",
-    desc:"A South Indian adventure discovery listing."
-  },
-
-  {
-    title:"Galaxy",
-    cat:"Hollywood",
-    year:2026,
-    rating:"8.8",
-    genre:"Sci-Fi",
-    poster:"p8",
-    icon:"🚀",
-    desc:"A science-fiction movie discovery listing."
-  },
-
-  {
-    title:"Love Again",
-    cat:"Bollywood",
-    year:2025,
-    rating:"7.9",
-    genre:"Romance",
-    poster:"p6",
-    icon:"💜",
-    desc:"A romantic movie discovery listing."
-  },
-
-  {
-    title:"Shadow",
-    cat:"Hindi Dubbed",
-    year:2026,
-    rating:"8.6",
-    genre:"Action",
-    poster:"p1",
-    icon:"🥷",
-    desc:"A Hindi-dubbed action discovery listing."
-  },
-
-  {
-    title:"The Hunter",
-    cat:"Hindi Dubbed",
-    year:2025,
     rating:"8.2",
+    poster:"https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+    description:"Peter Parker's life becomes complicated when a spell opens the door to unexpected visitors from other worlds."
+},
+
+{
+    title:"Interstellar",
+    year:"2014",
+    genre:"Sci-Fi",
+    rating:"8.7",
+    poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    description:"Explorers travel through a mysterious wormhole in space in search of a new home for humanity."
+},
+
+{
+    title:"Inception",
+    year:"2010",
     genre:"Thriller",
-    poster:"p6",
-    icon:"🎯",
-    desc:"A Hindi-dubbed thriller discovery listing."
-  }
+    rating:"8.8",
+    poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
+    description:"A skilled thief who steals secrets through dreams is offered a chance to erase his past by performing the impossible."
+},
+
+{
+    title:"Joker",
+    year:"2019",
+    genre:"Drama",
+    rating:"8.4",
+    poster:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    description:"A troubled man slowly descends into a dark transformation that changes the city around him."
+},
+
+{
+    title:"The Dark Knight",
+    year:"2008",
+    genre:"Action",
+    rating:"9.0",
+    poster:"https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    description:"Batman faces a criminal mastermind who pushes Gotham and its heroes to their limits."
+},
+
+{
+    title:"The Batman",
+    year:"2022",
+    genre:"Thriller",
+    rating:"7.8",
+    poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    description:"Batman investigates a series of crimes that reveal a deeper conspiracy within Gotham City."
+},
+
+{
+    title:"Avatar",
+    year:"2009",
+    genre:"Sci-Fi",
+    rating:"7.8",
+    poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+    description:"A marine becomes part of a distant world and discovers a conflict that forces him to choose where he belongs."
+},
+
+{
+    title:"Guardians of the Galaxy",
+    year:"2014",
+    genre:"Comedy",
+    rating:"8.0",
+    poster:"https://image.tmdb.org/t/p/w500/r7vmZjiyZw9rpJENB2W8M3W5V2Y.jpg",
+    description:"A group of unlikely heroes must work together to protect the galaxy from a powerful enemy."
+},
+
+{
+    title:"Doctor Strange",
+    year:"2016",
+    genre:"Action",
+    rating:"7.5",
+    poster:"https://image.tmdb.org/t/p/w500/uGBVj3bEbCoqDjsu0Xd1Q2kDP0V.jpg",
+    description:"A brilliant surgeon discovers the mystical arts after a life-changing accident."
+},
+
+{
+    title:"John Wick",
+    year:"2014",
+    genre:"Action",
+    rating:"7.4",
+    poster:"https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
+    description:"A retired assassin returns to his violent past after a devastating personal loss."
+},
+
+{
+    title:"Free Guy",
+    year:"2021",
+    genre:"Comedy",
+    rating:"7.1",
+    poster:"https://image.tmdb.org/t/p/w500/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg",
+    description:"A bank employee discovers that he is actually a background character inside a video game."
+}
 
 ];
 
 
-let category="All";
+/* DISPLAY MOVIES */
 
-let favorites=JSON.parse(
-  localStorage.getItem("rbFavorites") || "[]"
-);
+function displayMovies(list){
 
-let selectedMovie=null;
+    const grid = document.getElementById("movieGrid");
 
+    grid.innerHTML = "";
 
-/* CATEGORY */
+    if(list.length === 0){
 
-document
-.querySelectorAll(".cat")
-.forEach(button=>{
+        document.getElementById("empty").style.display = "block";
 
-  button.addEventListener("click",()=>{
+        return;
 
-    setCategory(button.dataset.cat);
+    }
 
-  });
-
-});
+    document.getElementById("empty").style.display = "none";
 
 
-function setCategory(cat){
+    list.forEach((movie,index)=>{
 
-  category=cat;
+        const card = document.createElement("div");
 
-  document
-  .querySelectorAll(".cat")
-  .forEach(button=>{
+        card.className = "card";
 
-    button.classList.toggle(
-      "active",
-      button.dataset.cat===cat
-    );
+        card.innerHTML = `
 
-  });
+            <img
+                class="poster"
+                src="${movie.poster}"
+                alt="${movie.title}"
+                loading="lazy"
+                onerror="this.src='https://via.placeholder.com/500x750/151515/ffffff?text=RB+MOVIES'"
+            >
 
-  document.getElementById("sectionTitle")
-  .textContent =
-    cat==="All"
-    ? "Trending Today"
-    : cat==="Favorites"
-    ? "Your Watchlist"
-    : cat;
+            <div class="card-info">
 
-  renderMovies();
+                <div class="card-title">
+                    ${movie.title}
+                </div>
+
+                <div class="meta">
+
+                    <span>${movie.year}</span>
+
+                    <span class="rating">
+                        ★ ${movie.rating}
+                    </span>
+
+                </div>
+
+            </div>
+        `;
+
+        card.onclick = () => openMovie(movie);
+
+        grid.appendChild(card);
+
+    });
 
 }
+
+
+/* OPEN MOVIE */
+
+function openMovie(movie){
+
+    document.getElementById("modalPoster").src = movie.poster;
+
+    document.getElementById("modalTitle").textContent = movie.title;
+
+    document.getElementById("modalYear").textContent =
+        movie.year;
+
+    document.getElementById("modalGenre").textContent =
+        movie.genre;
+
+    document.getElementById("modalRating").textContent =
+        "★ " + movie.rating;
+
+    document.getElementById("modalDescription").textContent =
+        movie.description;
+
+    document.getElementById("movieModal").classList.add("show");
+
+}
+
+
+/* CLOSE */
+
+function closeModal(){
+
+    document.getElementById("movieModal")
+    .classList.remove("show");
+
+}
+
+
+document.getElementById("movieModal").addEventListener("click",function(e){
+
+    if(e.target === this){
+        closeModal();
+    }
+
+});
 
 
 /* SEARCH */
 
-document
-.getElementById("search")
-.addEventListener(
-  "input",
-  renderMovies
-);
+function searchMovies(){
 
-
-/* FAVORITE */
-
-function toggleFavorite(index){
-
-  const title=movies[index].title;
-
-  if(favorites.includes(title)){
-
-    favorites=favorites.filter(
-      item=>item!==title
-    );
-
-  }else{
-
-    favorites.push(title);
-
-  }
-
-  localStorage.setItem(
-    "rbFavorites",
-    JSON.stringify(favorites)
-  );
-
-  renderMovies();
-
-  if(selectedMovie!==null){
-
-    updateFavoriteButton();
-
-  }
-
-}
-
-
-function favoriteFromModal(){
-
-  if(selectedMovie===null)return;
-
-  toggleFavorite(selectedMovie);
-
-}
-
-
-function updateFavoriteButton(){
-
-  const button=
-    document.getElementById("favButton");
-
-  const title=
-    movies[selectedMovie].title;
-
-  button.textContent=
-    favorites.includes(title)
-    ? "♥ Remove from Watchlist"
-    : "♡ Add to Watchlist";
-
-}
-
-
-/* OPEN */
-
-function openMovie(index){
-
-  selectedMovie=index;
-
-  const movie=movies[index];
-
-  const poster=
-    document.getElementById("modalPoster");
-
-  poster.className=
-    "modal-poster "+movie.poster;
-
-  poster.innerHTML=`
-    <div class="modal-poster-title">
-      ${movie.title}
-    </div>
-  `;
-
-  document
-  .getElementById("modalTitle")
-  .textContent=movie.title;
-
-  document
-  .getElementById("modalInfo")
-  .textContent=
-    "⭐ "+movie.rating+
-    "  •  "+movie.year+
-    "  •  "+movie.cat+
-    "  •  "+movie.genre;
-
-  document
-  .getElementById("modalDescription")
-  .textContent=movie.desc;
-
-  document
-  .getElementById("officialSearch")
-  .href=
-    "https://www.google.com/search?q="+
-    encodeURIComponent(
-      movie.title+
-      " official where to watch"
-    );
-
-  updateFavoriteButton();
-
-  document
-  .getElementById("modal")
-  .classList.add("show");
-
-}
-
-
-function closeModal(){
-
-  document
-  .getElementById("modal")
-  .classList.remove("show");
-
-  selectedMovie=null;
-
-}
-
-
-function outsideClose(event){
-
-  if(
-    event.target===
-    document.getElementById("modal")
-  ){
-
-    closeModal();
-
-  }
-
-}
-
-
-/* RENDER */
-
-function renderMovies(){
-
-  const query=
-    document
-    .getElementById("search")
-    .value
-    .trim()
-    .toLowerCase();
-
-  let list=
-    movies
-    .map((movie,index)=>({
-      movie,
-      index
-    }))
-    .filter(item=>{
-
-      const movie=item.movie;
-
-      const categoryMatch=
-        category==="All" ||
-        (
-          category==="Favorites" &&
-          favorites.includes(movie.title)
-        ) ||
-        movie.cat===category;
-
-      const searchMatch=
-        movie.title
+    const search =
+        document.getElementById("searchInput")
+        .value
         .toLowerCase()
-        .includes(query) ||
+        .trim();
 
-        movie.cat
-        .toLowerCase()
-        .includes(query) ||
+    const filtered = movies.filter(movie =>
 
-        movie.genre
-        .toLowerCase()
-        .includes(query) ||
+        movie.title.toLowerCase().includes(search) ||
 
-        String(movie.year)
-        .includes(query);
+        movie.genre.toLowerCase().includes(search)
 
-      return categoryMatch && searchMatch;
-
-    });
-
-
-  list.sort(
-    (a,b)=>
-      Number(b.movie.rating)-
-      Number(a.movie.rating)
-  );
-
-
-  const box=
-    document.getElementById("movies");
-
-
-  if(!list.length){
-
-    box.innerHTML=`
-      <div class="empty">
-        <div style="font-size:45px">🔎</div>
-        <br>
-        No movies found
-      </div>
-    `;
-
-    return;
-
-  }
-
-
-  box.innerHTML=
-    list.map(item=>{
-
-      const movie=item.movie;
-      const index=item.index;
-
-      const liked=
-        favorites.includes(movie.title);
-
-      return`
-
-        <article
-          class="card"
-          data-index="${index}"
-        >
-
-          <div class="poster ${movie.poster}">
-
-            <button
-              class="favorite"
-              data-fav="${index}"
-            >
-              ${liked?"♥":"♡"}
-            </button>
-
-            <div class="poster-content">
-
-              <div class="poster-icon">
-                ${movie.icon}
-              </div>
-
-              <div class="poster-title">
-                ${movie.title}
-              </div>
-
-              <div class="poster-year">
-                ${movie.year} • ${movie.genre}
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="card-info">
-
-            <div class="card-name">
-              ${movie.title}
-            </div>
-
-            <div class="card-meta">
-              <span class="rating">
-                ⭐ ${movie.rating}
-              </span>
-              &nbsp;•&nbsp;
-              ${movie.year}
-            </div>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-
-  document
-  .querySelectorAll(".card")
-  .forEach(card=>{
-
-    card.addEventListener(
-      "click",
-      ()=>{
-        openMovie(
-          Number(card.dataset.index)
-        );
-      }
     );
 
-  });
-
-
-  document
-  .querySelectorAll("[data-fav]")
-  .forEach(button=>{
-
-    button.addEventListener(
-      "click",
-      event=>{
-
-        event.stopPropagation();
-
-        toggleFavorite(
-          Number(button.dataset.fav)
-        );
-
-      }
-    );
-
-  });
+    displayMovies(filtered);
 
 }
 
 
-/* BOTTOM NAV */
+/* CATEGORY FILTER */
 
-document
-.querySelectorAll(".nav-btn")
-.forEach(button=>{
+function filterMovies(category,button){
 
-  button.addEventListener("click",()=>{
-
-    document
-    .querySelectorAll(".nav-btn")
-    .forEach(b=>
-      b.classList.remove("active")
-    );
+    document.querySelectorAll(".cat")
+    .forEach(btn => btn.classList.remove("active"));
 
     button.classList.add("active");
 
-    const nav=button.dataset.nav;
 
-    if(nav==="home"){
+    if(category === "All"){
 
-      setCategory("All");
+        displayMovies(movies);
 
-      window.scrollTo({
-        top:0,
+    }else{
+
+        const filtered =
+            movies.filter(movie =>
+                movie.genre === category
+            );
+
+        displayMovies(filtered);
+
+    }
+
+}
+
+
+/* SCROLL */
+
+function scrollMovies(){
+
+    document.getElementById("moviesSection")
+    .scrollIntoView({
         behavior:"smooth"
-      });
+    });
 
-    }
-
-    if(nav==="movies"){
-
-      setCategory("All");
-
-      document
-      .getElementById("movies")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-    }
-
-    if(nav==="tv"){
-
-      alert(
-        "📺 TV Shows section coming soon!"
-      );
-
-    }
-
-    if(nav==="favorites"){
-
-      setCategory("Favorites");
-
-    }
-
-    if(nav==="search"){
-
-      document
-      .getElementById("search")
-      .focus();
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-
-    }
-
-  });
-
-});
+}
 
 
-/* SEARCH ENTER */
+/* INFO */
 
-document
-.getElementById("search")
-.addEventListener(
-  "keydown",
-  event=>{
+function showInfo(){
 
-    if(event.key==="Enter"){
+    alert(
+        "RB MOVIES is a movie discovery website. " +
+        "Browse movies, search by title or genre, " +
+        "and open a movie to see its details."
+    );
 
-      document
-      .getElementById("movies")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-    }
-
-  }
-);
+}
 
 
-/* ESC */
+/* SUPPORT */
 
-document.addEventListener(
-  "keydown",
-  event=>{
+function showSupport(){
 
-    if(event.key==="Escape"){
-      closeModal();
-    }
+    alert(
+        "Thank you for supporting RB MOVIES ❤️"
+    );
 
-  }
-);
+}
 
 
-/* START */
+/* INITIAL LOAD */
 
-renderMovies();
+displayMovies(movies);
 
 </script>
 
