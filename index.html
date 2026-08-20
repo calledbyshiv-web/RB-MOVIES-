@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RB MOVIES</title>
+<title>RB MOVIES - Movie Discovery</title>
+
+<meta name="description"
+content="RB MOVIES - Discover movies, ratings, genres, release information and movie details.">
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -20,6 +28,7 @@ body{
 }
 
 /* HEADER */
+
 header{
     position:sticky;
     top:0;
@@ -50,13 +59,13 @@ header{
 }
 
 .search{
-    width:350px;
+    width:370px;
     max-width:50%;
 }
 
 .search input{
     width:100%;
-    padding:12px 16px;
+    padding:12px 17px;
     border:none;
     outline:none;
     border-radius:25px;
@@ -70,13 +79,20 @@ header{
 }
 
 /* HERO */
+
 .hero{
-    min-height:420px;
+    min-height:430px;
     padding:70px 6%;
     display:flex;
     align-items:center;
+
     background:
-    linear-gradient(90deg,#050505 0%,rgba(5,5,5,.92) 35%,rgba(5,5,5,.35) 100%),
+    linear-gradient(
+        90deg,
+        #050505 0%,
+        rgba(5,5,5,.90) 35%,
+        rgba(5,5,5,.30) 100%
+    ),
     url("https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg")
     center/cover;
 }
@@ -103,9 +119,11 @@ header{
 
 .hero p{
     color:#ccc;
-    line-height:1.6;
+    line-height:1.7;
     margin-bottom:22px;
 }
+
+/* BUTTONS */
 
 .btn{
     display:inline-block;
@@ -128,7 +146,8 @@ header{
     margin-left:8px;
 }
 
-/* CATEGORY */
+/* CATEGORIES */
+
 .categories{
     max-width:1250px;
     margin:30px auto 10px;
@@ -158,7 +177,8 @@ header{
     color:#fff;
 }
 
-/* SECTION */
+/* SECTIONS */
+
 .section{
     max-width:1250px;
     margin:30px auto;
@@ -181,7 +201,8 @@ header{
     font-size:13px;
 }
 
-/* MOVIE GRID */
+/* MOVIES */
+
 .movies{
     display:grid;
     grid-template-columns:repeat(6,1fr);
@@ -234,6 +255,7 @@ header{
 }
 
 /* EMPTY */
+
 .empty{
     display:none;
     text-align:center;
@@ -241,15 +263,105 @@ header{
     color:#888;
 }
 
+/* ADVERTISEMENT */
+
+.ad-section{
+    max-width:1150px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.ad-box{
+    width:100%;
+    min-height:120px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#101010;
+    border:1px solid #222;
+    border-radius:10px;
+
+    color:#555;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.ad-box span{
+    opacity:.7;
+}
+
+/* SUPPORT */
+
+.support{
+    max-width:1150px;
+    margin:40px auto;
+    padding:30px;
+    text-align:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #171717,
+        #0d0d0d
+    );
+
+    border:1px solid #292929;
+    border-radius:12px;
+}
+
+.support h2{
+    margin-bottom:10px;
+}
+
+.support p{
+    color:#999;
+    margin-bottom:18px;
+    line-height:1.6;
+}
+
+/* INFORMATION SECTIONS */
+
+.info-section{
+    max-width:1150px;
+    margin:25px auto;
+    padding:28px;
+
+    background:#111;
+    border:1px solid #222;
+    border-radius:10px;
+}
+
+.info-section h2{
+    margin-bottom:14px;
+    color:#fff;
+}
+
+.info-section p{
+    color:#999;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.info-section a{
+    color:#e50914;
+    text-decoration:none;
+}
+
 /* MODAL */
+
 .modal{
     position:fixed;
     inset:0;
     z-index:2000;
+
     background:rgba(0,0,0,.88);
+
     display:none;
     align-items:center;
     justify-content:center;
+
     padding:20px;
 }
 
@@ -262,9 +374,11 @@ header{
     max-width:100%;
     max-height:90vh;
     overflow:auto;
+
     background:#141414;
     border-radius:12px;
     position:relative;
+
     border:1px solid #292929;
 }
 
@@ -272,12 +386,16 @@ header{
     position:absolute;
     right:15px;
     top:12px;
+
     width:35px;
     height:35px;
+
     border-radius:50%;
     border:none;
+
     background:rgba(0,0,0,.7);
     color:#fff;
+
     font-size:22px;
     cursor:pointer;
     z-index:3;
@@ -319,31 +437,13 @@ header{
     font-size:12px;
 }
 
-/* SUPPORT */
-.support{
-    max-width:1150px;
-    margin:40px auto;
-    padding:28px;
-    text-align:center;
-    background:linear-gradient(135deg,#171717,#0d0d0d);
-    border:1px solid #292929;
-    border-radius:12px;
-}
-
-.support h2{
-    margin-bottom:10px;
-}
-
-.support p{
-    color:#999;
-    margin-bottom:18px;
-}
-
 /* FOOTER */
+
 footer{
     text-align:center;
-    padding:30px 20px;
+    padding:35px 20px;
     color:#777;
+
     border-top:1px solid #1d1d1d;
     margin-top:40px;
 }
@@ -352,14 +452,37 @@ footer strong{
     color:#e50914;
 }
 
+.footer-links{
+    margin-top:15px;
+}
+
+.footer-links a{
+    color:#777;
+    text-decoration:none;
+    margin:0 8px;
+}
+
+.footer-links a:hover{
+    color:#e50914;
+}
+
+.copyright{
+    margin-top:15px;
+    font-size:13px;
+}
+
 /* RESPONSIVE */
+
 @media(max-width:1100px){
+
     .movies{
         grid-template-columns:repeat(5,1fr);
     }
+
 }
 
 @media(max-width:850px){
+
     .movies{
         grid-template-columns:repeat(4,1fr);
     }
@@ -371,9 +494,11 @@ footer strong{
     .search{
         max-width:45%;
     }
+
 }
 
 @media(max-width:600px){
+
     header{
         padding:12px 4%;
     }
@@ -395,7 +520,6 @@ footer strong{
     .hero{
         min-height:390px;
         padding:50px 5%;
-        background-position:center;
     }
 
     .hero h1{
@@ -420,13 +544,38 @@ footer strong{
     .modal-details h2{
         font-size:25px;
     }
+
+    .info-section{
+        margin:20px;
+    }
+
 }
+
+/* SMALL MOBILE */
+
+@media(max-width:380px){
+
+    .movies{
+        gap:10px;
+    }
+
+    .card-title{
+        font-size:13px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- HEADER -->
+
 <header>
+
     <div class="nav">
 
         <div class="logo">
@@ -434,16 +583,20 @@ footer strong{
         </div>
 
         <div class="search">
+
             <input
                 type="text"
                 id="searchInput"
                 placeholder="Search movies..."
                 onkeyup="searchMovies()"
             >
+
         </div>
 
     </div>
+
 </header>
+
 
 
 <!-- HERO -->
@@ -452,107 +605,310 @@ footer strong{
 
     <div class="hero-content">
 
-        <span class="badge">FEATURED MOVIE</span>
+        <span class="badge">
+            FEATURED
+        </span>
 
-        <h1>Movie Night Starts Here</h1>
+        <h1>
+            Movie Night Starts Here
+        </h1>
 
         <p>
-            Discover movies, explore details, check ratings and
-            find your next favourite movie on RB MOVIES.
+            Discover movies, explore ratings, genres,
+            release information and movie details
+            on RB MOVIES.
         </p>
 
-        <button class="btn btn-red" onclick="scrollMovies()">
+        <button
+            class="btn btn-red"
+            onclick="scrollMovies()">
+
             Explore Movies
+
         </button>
 
-        <button class="btn btn-dark" onclick="showInfo()">
+        <button
+            class="btn btn-dark"
+            onclick="showInfo()">
+
             More Info
+
         </button>
 
     </div>
 
 </section>
+
 
 
 <!-- CATEGORIES -->
 
 <div class="categories">
 
-    <button class="cat active" onclick="filterMovies('All',this)">
+    <button
+        class="cat active"
+        onclick="filterMovies('All',this)">
+
         All
+
     </button>
 
-    <button class="cat" onclick="filterMovies('Action',this)">
+    <button
+        class="cat"
+        onclick="filterMovies('Action',this)">
+
         Action
+
     </button>
 
-    <button class="cat" onclick="filterMovies('Drama',this)">
+    <button
+        class="cat"
+        onclick="filterMovies('Drama',this)">
+
         Drama
+
     </button>
 
-    <button class="cat" onclick="filterMovies('Comedy',this)">
+    <button
+        class="cat"
+        onclick="filterMovies('Comedy',this)">
+
         Comedy
+
     </button>
 
-    <button class="cat" onclick="filterMovies('Thriller',this)">
+    <button
+        class="cat"
+        onclick="filterMovies('Thriller',this)">
+
         Thriller
+
     </button>
 
-    <button class="cat" onclick="filterMovies('Sci-Fi',this)">
+    <button
+        class="cat"
+        onclick="filterMovies('Sci-Fi',this)">
+
         Sci-Fi
+
     </button>
 
 </div>
 
 
+
 <!-- MOVIES -->
 
-<section class="section" id="moviesSection">
+<section
+    class="section"
+    id="moviesSection">
 
     <div class="section-title">
-        <h2>Popular Movies</h2>
-        <span>VIEW ALL</span>
+
+        <h2>
+            Popular Movies
+        </h2>
+
+        <span>
+            RB MOVIES
+        </span>
+
     </div>
 
-    <div class="movies" id="movieGrid"></div>
+    <div
+        class="movies"
+        id="movieGrid">
+    </div>
 
-    <div class="empty" id="empty">
+    <div
+        class="empty"
+        id="empty">
+
         No movies found.
+
     </div>
 
 </section>
+
+
+
+<!-- ADVERTISEMENT -->
+
+<section class="ad-section">
+
+    <div class="ad-box">
+
+        <span>
+            ADVERTISEMENT
+        </span>
+
+        <!--
+        GOOGLE ADSENSE CODE
+        APPROVAL KE BAAD YAHAN LAGEGA
+        -->
+
+    </div>
+
+</section>
+
 
 
 <!-- SUPPORT -->
 
 <section class="support">
 
-    <h2>❤️ Support RB MOVIES</h2>
+    <h2>
+        ❤️ Support RB MOVIES
+    </h2>
 
     <p>
-        Enjoying the website? Your support helps us keep improving
-        the movie discovery experience.
+        Enjoying RB MOVIES?
+        Your support helps us improve
+        the website and add more features.
     </p>
 
-    <button class="btn btn-red" onclick="showSupport()">
+    <button
+        class="btn btn-red"
+        onclick="showSupport()">
+
         Support Us
+
     </button>
 
 </section>
 
 
-<footer>
-    © 2026 <strong>RB MOVIES</strong> — Movie Discovery Website
-</footer>
+
+<!-- ABOUT -->
+
+<section
+    class="info-section"
+    id="about">
+
+    <h2>
+        About RB MOVIES
+    </h2>
+
+    <p>
+        RB MOVIES is a movie discovery website
+        designed to help users explore movies,
+        genres, ratings, release information and
+        other movie-related details in one place.
+    </p>
+
+    <p>
+        Our goal is to provide a simple,
+        fast and user-friendly movie discovery
+        experience.
+    </p>
+
+</section>
 
 
-<!-- MODAL -->
 
-<div class="modal" id="movieModal">
+<!-- CONTACT -->
+
+<section
+    class="info-section"
+    id="contact">
+
+    <h2>
+        Contact Us
+    </h2>
+
+    <p>
+        For questions, feedback or website-related
+        concerns, contact us at:
+    </p>
+
+    <a href="mailto:calledbyshiv@gmail.com">
+
+        calledbyshiv@gmail.com
+
+    </a>
+
+</section>
+
+
+
+<!-- PRIVACY -->
+
+<section
+    class="info-section"
+    id="privacy">
+
+    <h2>
+        Privacy Policy
+    </h2>
+
+    <p>
+        RB MOVIES may use cookies and similar
+        technologies to improve the user experience
+        and understand website usage.
+    </p>
+
+    <p>
+        If advertising services are used on this
+        website, third-party advertising providers
+        may use cookies or similar technologies
+        according to their own policies.
+    </p>
+
+    <p>
+        Users can manage certain cookie and
+        advertising preferences through their
+        browser or applicable advertising settings.
+    </p>
+
+</section>
+
+
+
+<!-- DISCLAIMER -->
+
+<section
+    class="info-section"
+    id="disclaimer">
+
+    <h2>
+        Disclaimer
+    </h2>
+
+    <p>
+        RB MOVIES is intended primarily for movie
+        discovery and informational purposes.
+    </p>
+
+    <p>
+        Movie titles, posters, ratings and related
+        information may belong to their respective
+        copyright holders.
+    </p>
+
+    <p>
+        RB MOVIES does not claim ownership of
+        third-party copyrighted material.
+    </p>
+
+</section>
+
+
+
+<!-- MOVIE MODAL -->
+
+<div
+    class="modal"
+    id="movieModal">
 
     <div class="modal-box">
 
-        <button class="close" onclick="closeModal()">×</button>
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
 
         <div class="modal-content">
 
@@ -569,18 +925,39 @@ footer strong{
 
                 <div class="tags">
 
-                    <span class="tag" id="modalYear"></span>
+                    <span
+                        class="tag"
+                        id="modalYear">
+                    </span>
 
-                    <span class="tag" id="modalGenre"></span>
+                    <span
+                        class="tag"
+                        id="modalGenre">
+                    </span>
 
-                    <span class="tag" id="modalRating"></span>
+                    <span
+                        class="tag"
+                        id="modalRating">
+                    </span>
 
                 </div>
 
                 <p id="modalDescription"></p>
 
-                <button class="btn btn-red" onclick="alert('Coming soon!')">
-                    Watch Now
+                <!--
+                IMPORTANT:
+                Yahan copyrighted movie download/
+                streaming link nahi lagana.
+                Future mein legal watch-source
+                button add kar sakte hain.
+                -->
+
+                <button
+                    class="btn btn-red"
+                    onclick="alert('Watch-source feature coming soon!')">
+
+                    Watch Options
+
                 </button>
 
             </div>
@@ -592,149 +969,198 @@ footer strong{
 </div>
 
 
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        RB MOVIES
+    </strong>
+
+    <div class="footer-links">
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+        <a href="#privacy">
+            Privacy
+        </a>
+
+        <a href="#disclaimer">
+            Disclaimer
+        </a>
+
+    </div>
+
+    <p class="copyright">
+
+        © 2026 RB MOVIES.
+        All rights reserved.
+
+    </p>
+
+</footer>
+
+
+
 <script>
 
-/* MOVIE DATA */
+/* =========================
+   MOVIE DATA
+   ========================= */
 
 const movies = [
 
 {
-    title:"Avengers: Endgame",
-    year:"2019",
-    genre:"Action",
-    rating:"8.4",
-    poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
-    description:"The Avengers face their biggest battle as they attempt to undo the devastating events that changed the universe."
+title:"Avengers: Endgame",
+year:"2019",
+genre:"Action",
+rating:"8.4",
+poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+description:"The Avengers face their biggest battle as they attempt to undo the devastating events that changed the universe."
 },
 
 {
-    title:"Spider-Man: No Way Home",
-    year:"2021",
-    genre:"Action",
-    rating:"8.2",
-    poster:"https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    description:"Peter Parker's life becomes complicated when a spell opens the door to unexpected visitors from other worlds."
+title:"Spider-Man: No Way Home",
+year:"2021",
+genre:"Action",
+rating:"8.2",
+poster:"https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+description:"Peter Parker's life becomes complicated when a spell opens the door to unexpected visitors from other worlds."
 },
 
 {
-    title:"Interstellar",
-    year:"2014",
-    genre:"Sci-Fi",
-    rating:"8.7",
-    poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-    description:"Explorers travel through a mysterious wormhole in space in search of a new home for humanity."
+title:"Interstellar",
+year:"2014",
+genre:"Sci-Fi",
+rating:"8.7",
+poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+description:"Explorers travel through a mysterious wormhole in space in search of a new home for humanity."
 },
 
 {
-    title:"Inception",
-    year:"2010",
-    genre:"Thriller",
-    rating:"8.8",
-    poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
-    description:"A skilled thief who steals secrets through dreams is offered a chance to erase his past by performing the impossible."
+title:"Inception",
+year:"2010",
+genre:"Thriller",
+rating:"8.8",
+poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
+description:"A skilled thief who steals secrets through dreams is offered a chance to erase his past by performing the impossible."
 },
 
 {
-    title:"Joker",
-    year:"2019",
-    genre:"Drama",
-    rating:"8.4",
-    poster:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-    description:"A troubled man slowly descends into a dark transformation that changes the city around him."
+title:"Joker",
+year:"2019",
+genre:"Drama",
+rating:"8.4",
+poster:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+description:"A troubled man slowly descends into a dark transformation that changes the city around him."
 },
 
 {
-    title:"The Dark Knight",
-    year:"2008",
-    genre:"Action",
-    rating:"9.0",
-    poster:"https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-    description:"Batman faces a criminal mastermind who pushes Gotham and its heroes to their limits."
+title:"The Dark Knight",
+year:"2008",
+genre:"Action",
+rating:"9.0",
+poster:"https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+description:"Batman faces a criminal mastermind who pushes Gotham and its heroes to their limits."
 },
 
 {
-    title:"The Batman",
-    year:"2022",
-    genre:"Thriller",
-    rating:"7.8",
-    poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-    description:"Batman investigates a series of crimes that reveal a deeper conspiracy within Gotham City."
+title:"The Batman",
+year:"2022",
+genre:"Thriller",
+rating:"7.8",
+poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+description:"Batman investigates a series of crimes that reveal a deeper conspiracy within Gotham City."
 },
 
 {
-    title:"Avatar",
-    year:"2009",
-    genre:"Sci-Fi",
-    rating:"7.8",
-    poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
-    description:"A marine becomes part of a distant world and discovers a conflict that forces him to choose where he belongs."
+title:"Avatar",
+year:"2009",
+genre:"Sci-Fi",
+rating:"7.8",
+poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+description:"A marine becomes part of a distant world and discovers a conflict that forces him to choose where he belongs."
 },
 
 {
-    title:"Guardians of the Galaxy",
-    year:"2014",
-    genre:"Comedy",
-    rating:"8.0",
-    poster:"https://image.tmdb.org/t/p/w500/r7vmZjiyZw9rpJENB2W8M3W5V2Y.jpg",
-    description:"A group of unlikely heroes must work together to protect the galaxy from a powerful enemy."
+title:"Guardians of the Galaxy",
+year:"2014",
+genre:"Comedy",
+rating:"8.0",
+poster:"https://image.tmdb.org/t/p/w500/r7vmZjiyZw9rpJENB2W8M3W5V2Y.jpg",
+description:"A group of unlikely heroes must work together to protect the galaxy from a powerful enemy."
 },
 
 {
-    title:"Doctor Strange",
-    year:"2016",
-    genre:"Action",
-    rating:"7.5",
-    poster:"https://image.tmdb.org/t/p/w500/uGBVj3bEbCoqDjsu0Xd1Q2kDP0V.jpg",
-    description:"A brilliant surgeon discovers the mystical arts after a life-changing accident."
+title:"Doctor Strange",
+year:"2016",
+genre:"Action",
+rating:"7.5",
+poster:"https://image.tmdb.org/t/p/w500/uGBVj3bEbCoqDjsu0Xd1Q2kDP0V.jpg",
+description:"A brilliant surgeon discovers the mystical arts after a life-changing accident."
 },
 
 {
-    title:"John Wick",
-    year:"2014",
-    genre:"Action",
-    rating:"7.4",
-    poster:"https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
-    description:"A retired assassin returns to his violent past after a devastating personal loss."
+title:"John Wick",
+year:"2014",
+genre:"Action",
+rating:"7.4",
+poster:"https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
+description:"A retired assassin returns to his violent past after a devastating personal loss."
 },
 
 {
-    title:"Free Guy",
-    year:"2021",
-    genre:"Comedy",
-    rating:"7.1",
-    poster:"https://image.tmdb.org/t/p/w500/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg",
-    description:"A bank employee discovers that he is actually a background character inside a video game."
+title:"Free Guy",
+year:"2021",
+genre:"Comedy",
+rating:"7.1",
+poster:"https://image.tmdb.org/t/p/w500/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg",
+description:"A bank employee discovers that he is actually a background character inside a video game."
 }
 
 ];
 
 
-/* DISPLAY MOVIES */
+/* =========================
+   DISPLAY MOVIES
+   ========================= */
 
 function displayMovies(list){
 
-    const grid = document.getElementById("movieGrid");
+    const grid =
+        document.getElementById("movieGrid");
 
-    grid.innerHTML = "";
+    grid.innerHTML="";
 
-    if(list.length === 0){
+    if(list.length===0){
 
-        document.getElementById("empty").style.display = "block";
+        document.getElementById("empty")
+        .style.display="block";
 
         return;
 
     }
 
-    document.getElementById("empty").style.display = "none";
+    document.getElementById("empty")
+    .style.display="none";
 
 
-    list.forEach((movie,index)=>{
+    list.forEach(movie=>{
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        card.className = "card";
+        card.className="card";
 
-        card.innerHTML = `
+
+        card.innerHTML=`
 
             <img
                 class="poster"
@@ -752,7 +1178,9 @@ function displayMovies(list){
 
                 <div class="meta">
 
-                    <span>${movie.year}</span>
+                    <span>
+                        ${movie.year}
+                    </span>
 
                     <span class="rating">
                         ★ ${movie.rating}
@@ -763,7 +1191,8 @@ function displayMovies(list){
             </div>
         `;
 
-        card.onclick = () => openMovie(movie);
+
+        card.onclick=()=>openMovie(movie);
 
         grid.appendChild(card);
 
@@ -772,32 +1201,39 @@ function displayMovies(list){
 }
 
 
-/* OPEN MOVIE */
+/* =========================
+   OPEN MOVIE
+   ========================= */
 
 function openMovie(movie){
 
-    document.getElementById("modalPoster").src = movie.poster;
+    document.getElementById("modalPoster")
+    .src=movie.poster;
 
-    document.getElementById("modalTitle").textContent = movie.title;
+    document.getElementById("modalTitle")
+    .textContent=movie.title;
 
-    document.getElementById("modalYear").textContent =
-        movie.year;
+    document.getElementById("modalYear")
+    .textContent=movie.year;
 
-    document.getElementById("modalGenre").textContent =
-        movie.genre;
+    document.getElementById("modalGenre")
+    .textContent=movie.genre;
 
-    document.getElementById("modalRating").textContent =
-        "★ " + movie.rating;
+    document.getElementById("modalRating")
+    .textContent="★ "+movie.rating;
 
-    document.getElementById("modalDescription").textContent =
-        movie.description;
+    document.getElementById("modalDescription")
+    .textContent=movie.description;
 
-    document.getElementById("movieModal").classList.add("show");
+    document.getElementById("movieModal")
+    .classList.add("show");
 
 }
 
 
-/* CLOSE */
+/* =========================
+   CLOSE MODAL
+   ========================= */
 
 function closeModal(){
 
@@ -807,16 +1243,21 @@ function closeModal(){
 }
 
 
-document.getElementById("movieModal").addEventListener("click",function(e){
+document.getElementById("movieModal")
+.addEventListener("click",function(e){
 
-    if(e.target === this){
+    if(e.target===this){
+
         closeModal();
+
     }
 
 });
 
 
-/* SEARCH */
+/* =========================
+   SEARCH
+   ========================= */
 
 function searchMovies(){
 
@@ -826,48 +1267,72 @@ function searchMovies(){
         .toLowerCase()
         .trim();
 
-    const filtered = movies.filter(movie =>
 
-        movie.title.toLowerCase().includes(search) ||
+    const filtered =
+        movies.filter(movie=>{
 
-        movie.genre.toLowerCase().includes(search)
+            return (
 
-    );
+                movie.title
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                movie.genre
+                .toLowerCase()
+                .includes(search)
+
+            );
+
+        });
+
 
     displayMovies(filtered);
 
 }
 
 
-/* CATEGORY FILTER */
+/* =========================
+   CATEGORY
+   ========================= */
 
 function filterMovies(category,button){
 
     document.querySelectorAll(".cat")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn=>{
+
+        btn.classList.remove("active");
+
+    });
+
 
     button.classList.add("active");
 
 
-    if(category === "All"){
+    if(category==="All"){
 
         displayMovies(movies);
 
-    }else{
-
-        const filtered =
-            movies.filter(movie =>
-                movie.genre === category
-            );
-
-        displayMovies(filtered);
+        return;
 
     }
+
+
+    const filtered =
+        movies.filter(movie=>
+            movie.genre===category
+        );
+
+
+    displayMovies(filtered);
 
 }
 
 
-/* SCROLL */
+/* =========================
+   SCROLL
+   ========================= */
 
 function scrollMovies(){
 
@@ -879,20 +1344,23 @@ function scrollMovies(){
 }
 
 
-/* INFO */
+/* =========================
+   INFO
+   ========================= */
 
 function showInfo(){
 
-    alert(
-        "RB MOVIES is a movie discovery website. " +
-        "Browse movies, search by title or genre, " +
-        "and open a movie to see its details."
-    );
+    document.getElementById("about")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
 
-/* SUPPORT */
+/* =========================
+   SUPPORT
+   ========================= */
 
 function showSupport(){
 
@@ -903,11 +1371,14 @@ function showSupport(){
 }
 
 
-/* INITIAL LOAD */
+/* =========================
+   INITIAL LOAD
+   ========================= */
 
 displayMovies(movies);
 
 </script>
+
 
 </body>
 </html>
